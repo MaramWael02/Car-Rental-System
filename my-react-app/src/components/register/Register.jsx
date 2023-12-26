@@ -8,12 +8,13 @@ export const REGISTER = (props) => {
     const [phoneNum, setPhoneNum] = useState('');
     const [address, setaddress] = useState('');
     const [username, setUsername] = useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
         
         try {
-            const response = await fetch('http://localhost:8000/api/register', {
+            const response = await fetch('http://localhost:8001/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -23,7 +24,7 @@ export const REGISTER = (props) => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Login successful:', data);
+                console.log('Successful Registeration', data);
                 // Handle successful login (e.g., redirect to dashboard)
             } else {
                 const errorData = await response.json();
