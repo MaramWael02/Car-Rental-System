@@ -8,6 +8,8 @@ export const REGISTER = (props) => {
     const [phoneNum, setPhoneNum] = useState('');
     const [address, setaddress] = useState('');
     const [username, setUsername] = useState('');
+    const [carLicense, setCarLicense] = useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
@@ -54,6 +56,13 @@ export const REGISTER = (props) => {
                 name="lname" id="lname" 
                 placeholder="Your Last Name" 
             />
+            <label htmlFor="username">Username</label>
+            <input 
+                value={username}
+                onChange={(e) => setUsername(e.target.value)} 
+                placeholder="abc123" 
+                id="username" name="username" 
+            />
 
             <label htmlFor="email">Email</label>
                 <input 
@@ -81,12 +90,11 @@ export const REGISTER = (props) => {
                 id="address" name="address" 
             />
             
-            <label htmlFor="username">Username</label>
+            <label htmlFor="carLicense">Driver License</label>
             <input 
-                value={username}
-                onChange={(e) => setUsername(e.target.value)} 
-                placeholder="abc123" 
-                id="username" name="username" 
+                value={carLicense}
+                onChange={(e) => setCarLicense(e.target.value)}  
+                id="carLicense" name="carLicense" 
             />
 
             <label htmlFor="password">Password</label>
