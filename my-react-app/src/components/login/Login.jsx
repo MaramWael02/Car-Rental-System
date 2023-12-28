@@ -22,7 +22,7 @@ export const LOGIN = (props) => {
                 const data = await response.json();
                 console.log('Login successful:', data);
                 props.onFormSwitch('HomePage')
-                // Handle successful login (e.g., redirect to dashboard)
+               // Handle successful login (e.g., redirect to dashboard)
             } else {
                 const errorData = await response.json();
                 setError(errorData.message || 'Login failed');

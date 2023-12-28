@@ -1,11 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Footer=() => {
-    /*const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
-    
-    const toggleform = (formName) => {
-      setCurrentForm(formName);
-    }*/
 
     return (
         <div className="App">
@@ -28,9 +23,7 @@ const Footer=() => {
                                 <div className="ftco-footer-widget mb-4 ml-md-5">
                                     <h2 className="ftco-heading-2">Information</h2>
                                     <ul className="list-unstyled">
-                                        <li><a href="#" className="py-2 d-block">About</a></li>
-                                        <li><a href="#" className="py-2 d-block">Services</a></li>
-                                        <li><a href="#" className="py-2 d-block">Term and Conditions</a></li>
+                                        <li><a href="#" className="py-2 d-block">Terms and Conditions</a></li>
                                         <li><a href="#" className="py-2 d-block">Best Price Guarantee</a></li>
                                         <li><a href="#" className="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
                                     </ul>
@@ -38,20 +31,10 @@ const Footer=() => {
                             </div>
                             <div className="col-md">
                                 <div className="ftco-footer-widget mb-4">
-                                    <h2 className="ftco-heading-2">Customer Support</h2>
-                                    <ul className="list-unstyled">
-                                        <li><a href="#" className="py-2 d-block">Payment Option</a></li>
-                                        <li><a href="#" className="py-2 d-block">Booking Tips</a></li>
-                                        <li><a href="#" className="py-2 d-block">How it works</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="col-md">
-                                <div className="ftco-footer-widget mb-4">
-                                    <h2 className="ftco-heading-2">Have a Questions?</h2>
+                                    <h2 className="ftco-heading-2">Have a Question?</h2>
                                     <div className="block-23 mb-3">
                                         <ul>
-                                            <li><a href="#"><span className="icon icon-phone" /><span className="text">+2 392 3929 210</span></a></li>
+                                            <li><a><span className="icon icon-phone" /><span className="text">+2 392 3929 210</span></a></li>
                                         </ul>
                                     </div>
                                 </div>

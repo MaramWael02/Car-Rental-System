@@ -18,21 +18,14 @@ const Main = () => {
                                 <div className="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
                                     <div className="col-lg-8 ftco-animate">
                                         <div className="text w-100 text-center mb-md-5 pb-md-5">
-                                            <h1 className="mb-4">Fast &amp; Easy Way To Rent A Car</h1>
-                                            <p style={{ fontSize: 18 }}>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
-                                            <a href="https://vimeo.com/45830194" className="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
-                                                <div className="icon d-flex align-items-center justify-content-center">
-                                                    <span className="ion-ios-play" />
-                                                </div>
-                                                <div className="heading-title ml-5">
-                                                    <span>Easy steps for renting a car</span>
-                                                </div>
-                                            </a>
+                                            <h1 className="mb-4">Fast and Easy Way To Rent A Car</h1>
+                                            <p style={{ fontSize: 18 }}>Unleash Your Dreams</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <section className="ftco-section ftco-no-pt bg-light">
                             <div className="container">
                                 <div className="row no-gutters">
@@ -70,7 +63,7 @@ const Main = () => {
                                             </div>
                                             <div className="col-md-8 d-flex align-items-center">
                                                 <div className="services-wrap rounded-right w-100">
-                                                    <h3 className="heading-section mb-4">Better Way to Rent Your Perfect Cars</h3>
+                                                    <h3 className="heading-section mb-4">The Perfect Way to Rent Your Perfect Cars</h3>
                                                     <div className="row d-flex mb-4">
                                                         <div className="col-md-4 d-flex align-self-stretch ftco-animate">
                                                             <div className="services w-100 text-center">
@@ -103,7 +96,26 @@ const Main = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div></section>
+                            </div>
+                        </section>
+                        <section className="ftco-section ftco-about">
+                            <div className="container">
+                                <div className="row no-gutters">
+                                    <div className="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: 'url(images/about.jpg)' }}>
+                                    </div>
+                                    <div className="col-md-6 wrap-about ftco-animate">
+                                        <div className="heading-section heading-section-white pl-md-5">
+                                            <span className="subheading">About us</span>
+                                            <h2 className="mb-4">Welcome to Carbook</h2>
+                                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                            <p><a href="#" className="btn btn-primary py-3 px-4">Search Vehicle</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
                         <section className="ftco-section ftco-no-pt bg-light">
                             <div className="container">
                                 <div className="row justify-content-center">
@@ -172,82 +184,6 @@ const Main = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section className="ftco-section ftco-about">
-                            <div className="container">
-                                <div className="row no-gutters">
-                                    <div className="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: 'url(images/about.jpg)' }}>
-                                    </div>
-                                    <div className="col-md-6 wrap-about ftco-animate">
-                                        <div className="heading-section heading-section-white pl-md-5">
-                                            <span className="subheading">About us</span>
-                                            <h2 className="mb-4">Welcome to LuxeDrive Rentals</h2>
-                                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                                            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                                            <p><a href="#" className="btn btn-primary py-3 px-4">Search Vehicle</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section className="ftco-section">
-                            <div className="container">
-                                <div className="row justify-content-center mb-5">
-                                    <div className="col-md-7 text-center heading-section ftco-animate">
-                                        <span className="subheading">Services</span>
-                                        <h2 className="mb-3">Our Latest Services</h2>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <div className="services services-2 w-100 text-center">
-                                            <div className="icon d-flex align-items-center justify-content-center"><span className="flaticon-wedding-car" /></div>
-                                            <div className="text w-100">
-                                                <h3 className="heading mb-2">Wedding Ceremony</h3>
-                                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="services services-2 w-100 text-center">
-                                            <div className="icon d-flex align-items-center justify-content-center"><span className="flaticon-transportation" /></div>
-                                            <div className="text w-100">
-                                                <h3 className="heading mb-2">City Transfer</h3>
-                                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="services services-2 w-100 text-center">
-                                            <div className="icon d-flex align-items-center justify-content-center"><span className="flaticon-car" /></div>
-                                            <div className="text w-100">
-                                                <h3 className="heading mb-2">Airport Transfer</h3>
-                                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="services services-2 w-100 text-center">
-                                            <div className="icon d-flex align-items-center justify-content-center"><span className="flaticon-transportation" /></div>
-                                            <div className="text w-100">
-                                                <h3 className="heading mb-2">Whole City Tour</h3>
-                                                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section className="ftco-section ftco-intro" style={{ backgroundImage: 'url(images/bg_3.jpg)' }}>
-                            <div className="overlay" />
-                            <div className="container">
-                                <div className="row justify-content-end">
-                                    <div className="col-md-6 heading-section heading-section-white ftco-animate">
-                                        <h2 className="mb-3">Do You Want To Earn With Us? So Don't Be Late.</h2>
-                                        <a href="#" className="btn btn-primary btn-lg">Become A Driver</a>
                                     </div>
                                 </div>
                             </div>
