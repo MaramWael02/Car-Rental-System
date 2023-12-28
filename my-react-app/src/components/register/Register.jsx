@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
 export const REGISTER = (props) => {
     const [email, setEmail] = useState('');
@@ -40,79 +41,97 @@ export const REGISTER = (props) => {
 
     return (
         <div className="auth-form-container">
+            <Form className="register-form" onSubmit={handleSubmit}>
             <h2>Register</h2>
-          <form className="register-form" onSubmit={handleSubmit}>
+                <Form.Group controlId="fname">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control
+                        value={fname}
+                        onChange={(e) => setfName(e.target.value)}
+                        type="text"
+                        placeholder="Your First Name"
+                    />
+                </Form.Group>
 
-            <label htmlFor="fname">First Name</label>
-            <input 
-                value={fname} 
-                onChange={(e) => setfName(e.target.value)} 
-                name="fname" id="fname" 
-                placeholder="Your First Name" 
-            />
-            <label htmlFor="lname">Last Name</label>
-            <input 
-                value={lname} 
-                onChange={(e) => setlName(e.target.value)} 
-                name="lname" id="lname" 
-                placeholder="Your Last Name" 
-            />
-            <label htmlFor="username">Username</label>
-            <input 
-                value={username}
-                onChange={(e) => setUsername(e.target.value)} 
-                placeholder="abc123" 
-                id="username" name="username" 
-            />
+                <Form.Group controlId="lname">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                        value={lname}
+                        onChange={(e) => setlName(e.target.value)}
+                        type="text"
+                        placeholder="Your Last Name"
+                    />
+                </Form.Group>
 
-            <label htmlFor="email">Email</label>
-                <input 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-                type="Email"
-                placeholder="youremail@gmail.com"
-                id="email" name="email" 
-            />
+                <Form.Group controlId="username">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        type="text"
+                        placeholder="abc123"
+                    />
+                </Form.Group>
 
-             <label htmlFor="phoneNum">Phone Number</label>
-             <input 
-                value={phoneNum} 
-                onChange={(e) => setPhoneNum(e.target.value)} 
-                type="tel"
-                placeholder="+(20)01000000000"
-                id="phoneNum" name="phoneNum" 
-            />
+                <Form.Group controlId="email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        placeholder="youremail@gmail.com"
+                    />
+                </Form.Group>
 
-            <label htmlFor="address">Address</label>
-            <input 
-                value={address} 
-                onChange={(e) => setaddress(e.target.value)} 
-                placeholder="city, country"
-                id="address" name="address" 
-            />
-            
-            <label htmlFor="carLicense">Driver License</label>
-            <input 
-                value={carLicense}
-                onChange={(e) => setCarLicense(e.target.value)}  
-                id="carLicense" name="carLicense" 
-            />
+                <Form.Group controlId="phoneNum">
+                    <Form.Label>Phone Number</Form.Label>
+                    <Form.Control
+                        value={phoneNum}
+                        onChange={(e) => setPhoneNum(e.target.value)}
+                        type="tel"
+                        placeholder="+(20)01000000000"
+                    />
+                </Form.Group>
 
-            <label htmlFor="password">Password</label>
-            <input 
-                value={password}
-                onChange={(e) => setPass(e.target.value)} 
-                type="Password"
-                placeholder="*********" 
-                id="password" name="password" 
-            />
+                <Form.Group controlId="address">
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control
+                        value={address}
+                        onChange={(e) => setaddress(e.target.value)}
+                        type="text"
+                        placeholder="city, country"
+                    />
+                </Form.Group>
 
-            <button type="submit" onClick={handleSubmit}>Sign up</button>
-            {error && <p className="error-message">{error}</p>}
-         </form>
-         <button className="link-button" onClick={() => props.onFormSwitch('login')}>
-            Already have an account? Sign in
-         </button>
+                <Form.Group controlId="carLicense">
+                    <Form.Label>Driver License</Form.Label>
+                    <Form.Control
+                        value={carLicense}
+                        onChange={(e) => setCarLicense(e.target.value)}
+                        type="text"
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                        value={password}
+                        onChange={(e) => setPass(e.target.value)}
+                        type="password"
+                        placeholder="*********"
+                    />
+                </Form.Group>
+
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                    Sign up
+                </Button>
+
+
+            <Button className="link-button" onClick={() => props.onFormSwitch('login')}>
+                Already have an account? Sign in
+            </Button>
+                {error && <p className="error-message">{error}</p>}
+            </Form>
         </div>
     )
 }

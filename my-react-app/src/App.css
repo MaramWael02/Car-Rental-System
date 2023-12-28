@@ -1,15 +1,34 @@
 
-.auth-form-container , .login-form, .register-form{
+.login-form, .register-form{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  min-height: 80vh;
-  min-width: 90vw;
-  color: white;
-  align-items: center;
-  justify-content: center;
-  padding: 0.25rem;
+  height: 50vh;
+  width: 40vh;
+  border-radius: 10px;
   display: flex;
-  background-image: linear-gradient(45deg, #93dcee 30%, #1347b8 90%);
   flex-direction: column;
+  justify-content: center;
+  /*background-image: linear-gradient(45deg, #93dcee 30%, #1347b8 90%);*/
+  background-color: transparent;
+  border-color: gray;
+  border-style: solid; /* Add this line */
+}
+.auth-form-container{
+  padding: 1rem;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin: 0.5rem;
+  background-image: url("../images/bg_1.jpg");
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
 }
 
 @media screen and (min-width: 600px) {
@@ -33,9 +52,14 @@ label{
   text-align: left;
   color: white;
   padding: 0.25rem 0;
+  height: 1rem;
+  width: 50px;
 
 }
 button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   font-weight: bold;
   background-color: aliceblue;
@@ -44,6 +68,8 @@ button{
   margin: 0.5rem 0;
   border-radius: 10px;
   cursor: pointer;
+  height: 50px;
+  width: 200px;
 }
 .link-button{
   background: none;
