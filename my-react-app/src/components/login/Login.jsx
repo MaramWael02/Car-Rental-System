@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
 
 export const LOGIN = (props) => {
     const [username, setUsername] = useState('');
@@ -22,7 +21,7 @@ export const LOGIN = (props) => {
                 const data = await response.json();
                 console.log('Login successful:', data);
                 props.onFormSwitch('HomePage')
-               // Handle successful login (e.g., redirect to dashboard)
+                // Handle successful login (e.g., redirect to dashboard)
             } else {
                 const errorData = await response.json();
                 setError(errorData.message || 'Login failed');
@@ -34,37 +33,35 @@ export const LOGIN = (props) => {
     }
 
     return (
-        <Form.Group className="auth-form-container">
-            <Form className="register-form" onSubmit={handleSubmit}>
-            <h2 className="Login">Login</h2>
-                <Form.Group controlId="username">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control 
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)} 
-                        type="text" 
-                        placeholder="username" 
-                        required 
-                    />
-                </Form.Group>
-                <Form.Group controlId="password">
-                    <Form.Label style={{ color: '' }}>Password</Form.Label>
-                    <Form.Control 
-                        value={password} 
-                        onChange={(e) => setPass(e.target.value)} 
-                        type="password" 
-                        placeholder="*********" 
-                        required 
-                    />
-                </Form.Group>
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                    Login
-                </Button>
-                {error && <Alert variant="danger">{error}</Alert>}
-            <Button className="link-button" onClick={() => props.onFormSwitch('register')}>
+        <div className="auth-form-container">
+            <form className="register-form" onSubmit={handleSubmit}>
+            <h2>Login</h2>
+                <label htmlFor="username">Username</label>
+                <input 
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} 
+                    type="text" 
+                    placeholder="username" 
+                    id="username" 
+                    name="username" 
+                    required 
+                />
+                <label htmlFor="password">Password</label>
+                <input 
+                    value={password} 
+                    onChange={(e) => setPass(e.target.value)} 
+                    type="password" 
+                    placeholder="*********" 
+                    id="password" 
+                    name="password" 
+                    required 
+                />
+                <button type="submit" onClick={handleSubmit}>Login</button>
+                {error && <p className="error-message">{error}</p>}
+            <button className="link-button" onClick={() => props.onFormSwitch('register')}>
                 Don't have an account? Sign up
-            </Button>
-            </Form>
-        </Form.Group>
+            </button>
+            </form>
+        </div>
     )
 }
