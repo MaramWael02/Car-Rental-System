@@ -26,6 +26,7 @@ export const REGISTER = (props) => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Successful Registeration', data);
+                props.onFormSwitch('login')
                 // Handle successful login (e.g., redirect to dashboard)
             } else {
                 const errorData = await response.json();
@@ -34,7 +35,7 @@ export const REGISTER = (props) => {
         } catch (error) {
             console.error('Error during login:', error);
             setError('Hello Server error');
-        }*/
+        }
     }
 
     return (
