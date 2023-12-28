@@ -14,8 +14,8 @@ export const REGISTER = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
         
-        try {
-            const response = await fetch('http://localhost:8002/api/register', {
+        /*try {
+            const response = await fetch('http://localhost:8000/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -25,7 +25,9 @@ export const REGISTER = (props) => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Successful Registeration', data);
+                console.log('Successful Registeration', data);*/
+                props.onFormSwitch('login')
+                /*
                 // Handle successful login (e.g., redirect to dashboard)
             } else {
                 const errorData = await response.json();
@@ -34,7 +36,7 @@ export const REGISTER = (props) => {
         } catch (error) {
             console.error('Error during login:', error);
             setError('Hello Server error');
-        }
+        }*/
     }
 
     return (
@@ -106,7 +108,7 @@ export const REGISTER = (props) => {
                 id="password" name="password" 
             />
 
-            <button type="submit">Sign up</button>
+            <button type="submit" onClick={handleSubmit}>Sign up</button>
             {error && <p className="error-message">{error}</p>}
          </form>
          <button className="link-button" onClick={() => props.onFormSwitch('login')}>
