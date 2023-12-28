@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Footer() {
+const Footer=() => {
     /*const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
     
     const toggleform = (formName) => {

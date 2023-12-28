@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Header() {
+const Header=() => {
     /*const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
     
     const toggleform = (formName) => {

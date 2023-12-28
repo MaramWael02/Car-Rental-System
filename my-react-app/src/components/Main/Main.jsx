@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Main() {
+const Main=() => {
     /*const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
     
     const toggleform = (formName) => {

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './App.css';
 import  {LOGIN}  from './components/login/Login';
 import  {REGISTER}  from './components/register/Register';
-import {HomePage} from './components/HomePage/HomePage';
+import HomePage from './components/HomePage/HomePage';
 
 function App() {
   const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
