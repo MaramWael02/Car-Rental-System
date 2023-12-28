@@ -40,7 +40,7 @@ export const LOGIN = (props) => {
                 <input 
                     value={username} 
                     onChange={(e) => setUsername(e.target.value)} 
-                    type="username" 
+                    type="text" 
                     placeholder="username" 
                     id="username" 
                     name="username" 
