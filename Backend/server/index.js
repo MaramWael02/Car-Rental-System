@@ -27,19 +27,20 @@ connection.connect((err) => {
 
 // Route to handle login authentication
 app.post('/api/login', (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   console.log('Received POST request at /api/login');
-
+  console.log('Email', username);
+  console.log('Password type:', typeof password);
   // Query the users table in the database
   connection.query(
-    'SELECT * FROM Car_Rental_System.customer WHERE email = ?',
-    [email],
+    'SELECT * FROM Car_Rental_System.customer WHERE customer_id = ?',
+    [username],
     (err, results) => {
       if (err) {
         console.error('Error during login:', err);
         return res.status(500).json({ message: 'Server error' });
       }
-  
+      console.log('results', results);
       if (results.length === 0) {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
