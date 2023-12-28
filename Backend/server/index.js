@@ -27,19 +27,20 @@ connection.connect((err) => {
 
 // Route to handle login authentication
 app.post('/api/login', (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   console.log('Received POST request at /api/login');
-
+  console.log('Email', username);
+  console.log('Password type:', typeof password);
   // Query the users table in the database
   connection.query(
-    'SELECT * FROM Car_Rental_System.customer WHERE email = ?',
-    [email],
+    'SELECT * FROM Car_Rental_System.customer WHERE customer_id = ?',
+    [username],
     (err, results) => {
       if (err) {
         console.error('Error during login:', err);
         return res.status(500).json({ message: 'Server error' });
       }
-  
+      console.log('results', results);
       if (results.length === 0) {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
@@ -64,6 +65,149 @@ app.post('/api/login', (req, res) => {
     }
   );
   
+});
+
+// Route to handle User Registerations
+app.post('/api/register', (req, res) => {
+  const { email, password, phoneNum, fname, lname, address, username, carLicense  } = req.body;
+  console.log('Received POST request at /api/register');
+  const phoneNumint = parseInt(phoneNum);
+  console.log("email , password, phoneNum, fname, lname, address, username, carLicense", email, password, phoneNumint, fname, lname, address, username, carLicense);
+
+  // Query the users table in the database
+  connection.query(
+    'insert into Car_Rental_System.customer (email, password, phone_no, first_name, last_name, address, customer_id,car_license) values (?,?,?,?,?,?,?,?)', 
+    [email, password, phoneNumint, fname, lname, address, username, carLicense],
+    (err, results) => {
+      if (err) {
+        console.error('Error during login:', err);
+        return res.status(500).json({ message: 'Server error' });
+      }
+  
+      console.log('');
+      return res.status(200).json({ message: 'Login successful' });
+    }
+  );
+  
+});
+
+// Route to handle viewing Cars
+app.get('/api/view-cars', (req, res) => {
+  console.log('Received POST request at /api/cars');
+    // Get the price of the car
+  connection.query(
+    'select * from Car_Rental_System.Car',
+    (err, cars) => {
+        if (err) {
+            console.error('Error during login:', err);
+            return res.status(500).json({ message: 'Server error' });
+        }
+        res.status(200).json(cars);
+    }
+  );
+
+
+  
+});
+///// Admin
+
+// Route to handle adding Cars
+app.post('/api/add-car', (req, res) => {
+  const { plate_id, model, brand, year, office_id, price } = req.body;
+  console.log('Received POST request at /api/add-car');
+  // Insert the reservation into the database
+  const office_id_int = parseInt(office_id);
+  const price_float = parseFloat(price);
+  const year_int = parseInt(year);
+  connection.query(
+    'insert into Car_Rental_System.Car (plate_id, model, year, office_id, price) values (?,?,?,?,?)', 
+    [plate_id, model, year_int, office_id_int, price_float],
+    (err, results) => {
+      if (err) {
+        console.error('Error during login:', err);
+        return res.status(500).json({ message: 'Server error' });
+      }
+      console.log('Car Added Successfully');
+    }
+  );
+  
+});
+
+//Reports
+
+// Route to handle sending reservation reports
+
+app.get('/api/reservation-reports', (req, res) => {
+  const {start_date, end_date} = req.body;
+  console.log('Received GET request at /api/reservation-reports');
+  // Get reservation reports during a certain time period
+  connection.query(
+      'select * from Car_Rental_System.Reservation Natural JOIN Car_Rental_System.customer where pick_up_date >= ? and return_date <= ?',
+      [start_date, end_date],
+      (err, reservation_reports) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          res.status(200).json(reservation_reports);
+      }
+  );
+});
+
+// Route to handle sending daily payment reports  
+app.get('/api/payment-reports', (req, res) => {
+  const {day} = req.body;
+  console.log('Received GET request at /api/payment-reports');
+  // Get all payments made on a certain day
+  connection.query(
+      'select sum(price), pick_up_date from Car_Rental_System.Reservation having pick_up_date = ?', /// Needs to be adjusted
+      [day],
+      (err, payment_reports) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          res.status(200).json(payment_reports);
+      }
+  );
+});
+
+// Route to handle sending status of a car report 
+
+app.get('/api/car-status-reports', (req, res) => { 
+  console.log('Received GET request at /api/car-status-reports');
+  // Get all payments made on a certain day
+  const {day} = req.body;
+  connection.query(
+      'select plate_id , status from Car_Rental_System.Car_Status where start_date <= ? and end_date >= ?',
+      [day, day],
+      (err, car_status_reports) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          res.status(200).json(car_status_reports);
+      }
+  );
+});
+
+// Route to handle sending all reservations of any car
+
+app.get('/api/car-reservations-report', (req, res) => {
+  console.log('Received GET request at /api/car-reservations-report');
+  // Get all payments made on a certain day
+  const {plate_id} = req.body;
+  connection.query(
+      'select * from Car_Rental_System.Reservation where plate_id = ?',
+      [plate_id],
+      (err, car_reservations) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          res.status(200).json(car_reservations);
+      }
+  );
 });
 
 // Start the server
