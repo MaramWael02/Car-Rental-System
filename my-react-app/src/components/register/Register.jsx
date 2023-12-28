@@ -15,7 +15,7 @@ export const REGISTER = (props) => {
         e.preventDefault(); // prevents the page from refreshing
         
         try {
-            const response = await fetch('http://localhost:8002/api/register', {
+            const response = await fetch('http://localhost:8000/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
