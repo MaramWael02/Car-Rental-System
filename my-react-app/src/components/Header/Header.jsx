@@ -23,7 +23,7 @@ function Header() {
                                 <li className="nav-item"><a href="services.html" className="nav-link">Services</a></li>
                                 <li className="nav-item"><a href="pricing.html" className="nav-link">Pricing</a></li>
                                 <li className="nav-item"><a href="car.html" className="nav-link">Cars</a></li>
-                                <li className="nav-item"><a href="contact.html" className="nav-link">Contact</a></li>
+                                <li className="nav-item"><a href="contact.html" className="nav-link">Login</a></li>
                             </ul>
                         </div>
                     </div>

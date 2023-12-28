@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 
 export const LOGIN = (props) => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPass] = useState('');
     const [error, setError] = useState('');
 
@@ -15,12 +15,13 @@ export const LOGIN = (props) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ username, password }),
             });
 
             if (response.ok) {
                 const data = await response.json();
                 console.log('Login successful:', data);
+                props.onFormSwitch('HomePage')
                 // Handle successful login (e.g., redirect to dashboard)
             } else {
                 const errorData = await response.json();
@@ -36,14 +37,14 @@ export const LOGIN = (props) => {
         <div className="auth-form-container">
             <h2>Login</h2>
             <form className="register-form" onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
+                <label htmlFor="username">Username</label>
                 <input 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)} 
-                    type="email" 
-                    placeholder="youremail@gmail.com" 
-                    id="email" 
-                    name="email" 
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} 
+                    type="username" 
+                    placeholder="username" 
+                    id="username" 
+                    name="username" 
                     required 
                 />
                 <label htmlFor="password">Password</label>
@@ -56,7 +57,7 @@ export const LOGIN = (props) => {
                     name="password" 
                     required 
                 />
-                <button type="submit">Login</button>
+                <button type="submit" onClick={handleSubmit}>Login</button>
                 {error && <p className="error-message">{error}</p>}
             </form>
             <button className="link-button" onClick={() => props.onFormSwitch('register')}>
