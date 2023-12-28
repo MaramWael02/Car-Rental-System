@@ -6,7 +6,8 @@ CREATE TABLE Car (
     model VARCHAR(50),
     brand VARCHAR(50),
     `year` INT,
-    office_id INT
+    office_id INT, 
+    price float
 );
 CREATE TABLE `Car_Status` (
     plate_id VARCHAR(50),
@@ -28,7 +29,8 @@ CREATE TABLE Reservation (
     office_id int,
     reservation_date datetime default CURRENT_TIMESTAMP,
     pick_up_date date, 
-    return_date date
+    return_date date, 
+    price float 
 );
 
 create table customer(
@@ -42,16 +44,20 @@ create table customer(
     car_license varchar(50)
 );
 
+create table `admin`(
+	username varchar(50),
+    `password` varchar(50)
+);
 
 
-USE Car_Rental_System;
-ALTER TABLE Reservation
-ADD PRIMARY KEY (reservation_id);
+
+
+
 
 USE Car_Rental_System;
 
 alter table Car
-Add primary key(plate_id, office_id);
+Add primary key(plate_id, office_id, price);
 
 alter table Car_Status
 Add primary key(plate_id, start_date, end_date);
@@ -78,9 +84,9 @@ alter table Reservation
 add foreign key(customer_id) references customer(customer_id);
 
 alter table Reservation
-add foreign key(plate_id, office_id) references Car(plate_id, office_id);
+add foreign key(plate_id, office_id, price) references Car(plate_id, office_id, price);
 
-
+drop database Car_Rental_System;
 
 
 
