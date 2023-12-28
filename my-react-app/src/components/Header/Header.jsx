@@ -1,11 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Header=() => {
-    /*const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
-    
-    const toggleform = (formName) => {
-      setCurrentForm(formName);
-    }*/
 
     return (
         <div className="App">
@@ -19,20 +14,14 @@ const Header=() => {
                         <div className="collapse navbar-collapse" id="ftco-nav">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active"><a href="/" className="nav-link">Home</a></li>
-                                <li className="nav-item"><a href="about.html" className="nav-link">About</a></li>
-                                <li className="nav-item"><a href="services.html" className="nav-link">Services</a></li>
                                 <li className="nav-item"><a href="pricing.html" className="nav-link">Pricing</a></li>
                                 <li className="nav-item"><a href="car.html" className="nav-link">Cars</a></li>
-                                <li className="nav-item"><a href="contact.html" className="nav-link">Login</a></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
-
             </>
-
         </div>
     );
 }
-
 export default Header;
