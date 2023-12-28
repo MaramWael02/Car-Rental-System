@@ -8,7 +8,7 @@ export const LOGIN = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
         
-        try {
+       /* try {
             const response = await fetch('http://localhost:8000/api/login', {
                 method: 'POST',
                 headers: {
@@ -19,9 +19,9 @@ export const LOGIN = (props) => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Login successful:', data);
+                console.log('Login successful:', data);*/
                 props.onFormSwitch('HomePage')
-                // Handle successful login (e.g., redirect to dashboard)
+              /*  // Handle successful login (e.g., redirect to dashboard)
             } else {
                 const errorData = await response.json();
                 setError(errorData.message || 'Login failed');
@@ -29,13 +29,14 @@ export const LOGIN = (props) => {
         } catch (error) {
             console.error('Error during login:', error);
             setError('Hello Server error');
-        }
+        }*/
     }
 
     return (
         <div className="auth-form-container">
-            <form className="register-form" onSubmit={handleSubmit}>
-            <h2>Login</h2>
+            <img src="../images/bg_1.jpg" className="background_image"/>
+            <form className="login-form" onSubmit={handleSubmit}>
+            <h2 className="LoginLabel">Login</h2>
                 <label htmlFor="username">Username</label>
                 <input 
                     value={username} 
@@ -56,12 +57,14 @@ export const LOGIN = (props) => {
                     name="password" 
                     required 
                 />
+            
+
                 <button type="submit" onClick={handleSubmit}>Login</button>
                 {error && <p className="error-message">{error}</p>}
             <button className="link-button" onClick={() => props.onFormSwitch('register')}>
                 Don't have an account? Sign up
             </button>
             </form>
-        </div>
+            </div>
     )
 }
