@@ -16,17 +16,19 @@ CREATE TABLE `Car_Status` (
 );
 CREATE TABLE Office (
    office_id int,
-   location varchar(255)
+   location varchar(255), 
+   office_name varchar(255)
    
 );
 
 CREATE TABLE Reservation (
     reservation_id int,
-    customer_id varchar(50), 
-    reservation_date date,
+    customer_id varchar(50),
+    plate_id varchar(50),
+    office_id int,
+    reservation_date datetime default CURRENT_TIMESTAMP,
     pick_up_date date, 
-    return_date date,
-    office_id int
+    return_date date
 );
 
 create table customer(
@@ -36,9 +38,51 @@ create table customer(
     last_name varchar(50),
     address varchar(50),
     phone_no int,
-    email varchar(50)
+    email varchar(50),
+    car_license varchar(50)
 );
-use Car_Rental_System;
-Insert into Car(plate_id,model,brand,`year`,office_id) values ('AB','BB','renault',2005,12);
+
+
+
+USE Car_Rental_System;
+ALTER TABLE Reservation
+ADD PRIMARY KEY (reservation_id);
+
+USE Car_Rental_System;
+
+alter table Car
+Add primary key(plate_id, office_id);
+
+alter table Car_Status
+Add primary key(plate_id, start_date, end_date);
+
+alter table Office
+Add primary key (office_id);
+
+alter table Reservation
+add primary key (reservation_id, customer_id, plate_id, office_id),
+modify column reservation_id int auto_increment;
+
+alter table customer
+add primary key(customer_id);
+
+alter table Car
+add foreign key (office_id) references Office(office_id);
+
+
+alter table Car_Status
+add foreign key (plate_id) references Car(plate_id);
+
+
+alter table Reservation
+add foreign key(customer_id) references customer(customer_id);
+
+alter table Reservation
+add foreign key(plate_id, office_id) references Car(plate_id, office_id);
+
+
+
+
+
 
 
