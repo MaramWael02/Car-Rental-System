@@ -50,7 +50,7 @@ input{
 label{
   font-size: 1rem;
   text-align: left;
-  color: white;
+  color: black;
   padding: 0.25rem 0;
   height: 1rem;
   width: 50px;
@@ -65,7 +65,7 @@ button{
   background-color: aliceblue;
   color: rgb(10, 52, 165);
   padding: 10px;
-  margin: 0.5rem 0;
+  margin: 5rem 5rem 0 5rem;
   border-radius: 10px;
   cursor: pointer;
   height: 50px;
@@ -74,5 +74,6 @@ button{
 .link-button{
   background: none;
   color: white;
+  margin: auto;
   text-decoration: underline;
 }
