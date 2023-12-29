@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Header_reports from "../Header_reports/Header_reports";
 
-const ReportsPage = () => {
+const ReportsPage = (props) => {
     const [reportType, setReportType] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
@@ -27,7 +27,7 @@ const ReportsPage = () => {
 
     return (
         <div >
-            <Header_reports />
+            <Header_reports onClick={props.onFormSwitch}/>
             <img alt="background of a car" src="../images/bg_1.jpg" className="background_image" />
             <div>
                 <form className="reports-form">
