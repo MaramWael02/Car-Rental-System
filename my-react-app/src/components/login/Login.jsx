@@ -10,34 +10,63 @@ export const LOGIN = (props) => {
     const handleOptionChange = (event) => {
       setSelectedOption(event.target.value);
     };
-  
+    const handleCustomerlogin = async (e) => {
+        e.preventDefault(); // prevents the page from refreshing
+        try {
+            const response = await fetch('http://localhost:8000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Login successful:', data);
+                props.onFormSwitch('HomePage')
+        // Handle successful login (e.g., redirect to dashboard)
+            }
+    else {
+         const errorData = await response.json();
+         setError(errorData.message || 'Login failed');
+     }
+ } catch (error) {
+     console.error('Error during login:', error);
+     setError('Hello Server error');
+ }
+    };
+    const handleAdminlogin = async (e) => { 
+        e.preventDefault(); // prevents the page from refreshing
+        try{
+            const response = await fetch('http://localhost:8000/api/adminlogin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Admin Login successful:', data);
+                props.onFormSwitch('AdminHomePage')
+            }
+        }
+        catch(error){
+            console.error('Error during login:', error);
+            setError('Hello Server error');
+        }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
-
-         try {
-             const response = await fetch('http://localhost:8000/api/login', {
-                 method: 'POST',
-                 headers: {
-                     'Content-Type': 'application/json',
-                 },
-                 body: JSON.stringify({ username, password }),
-             });
- 
-             if (response.ok) {
-                 const data = await response.json();
-                 console.log('Login successful:', data);
-                 props.onFormSwitch('HomePage')
-        / // Handle successful login (e.g., redirect to dashboard)
-      } else {
-          const errorData = await response.json();
-          setError(errorData.message || 'Login failed');
-      }
-  } catch (error) {
-      console.error('Error during login:', error);
-      setError('Hello Server error');
-  }
-    }
+        if (selectedOption === 'Customer') {
+         handleCustomerlogin(e);
+     }
+    else if (selectedOption === 'Admin') {
+        handleAdminlogin(e);
+    } }
 
     return (
         <div className="auth-form-container">
