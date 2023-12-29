@@ -10,9 +10,13 @@ const Header_reports=(props) => {
         {
             props.onClick('AdminHomePage');
         }
-        else{
+        else if (page === 'AddCarPage'){
             props.onClick('AddCarpage');
         }
+        else if (page === 'login'){
+            props.onClick('login');
+        }
+
       };
     return (
         <div className="App">
@@ -27,6 +31,7 @@ const Header_reports=(props) => {
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active"><a href='#' onClick={() => handleNavigation('AdminHomePage')} className="nav-link">Home</a></li>
                                 <li className="nav-item"><a href='#' onClick={() => handleNavigation('AddCarPage')} className="nav-link">Add Car</a></li>
+                                <li className="nav-item"><a href='#' onClick={() => handleNavigation('login')} className="nav-link">Sign out</a></li>
                             </ul>
                         </div>
                     </div>

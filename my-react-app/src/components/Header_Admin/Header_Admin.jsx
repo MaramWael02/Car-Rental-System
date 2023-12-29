@@ -20,6 +20,7 @@ const Header_Admin=(props) => {
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active"><a href='#' onClick={() => handleNavigation('AdminHomePage')} className="nav-link">Home</a></li>
                                 <li className="nav-item"><a href='#' onClick={() => handleNavigation('Reports')} className="nav-link">Reports</a></li>
+                                <li className="nav-item"><a href='#' onClick={() => handleNavigation('login')} className="nav-link">Sign Out</a></li>
                             </ul>
                         </div>
                     </div>
