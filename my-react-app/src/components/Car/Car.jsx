@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-
+import Header from "../Header/Header";
 export const CarList = (props) => {
     const [cars, setCars] = useState([]);
         useEffect(() => {
@@ -19,6 +19,7 @@ export const CarList = (props) => {
     return (
     
         <div>
+        <Header onClick={props.onFormSwitch}/>
         <section className="hero-wrap hero-wrap-2 js-fullheight" style={{ backgroundImage: 'url("images/bg_3.jpg")' }} data-stellar-background-ratio="0.5">
             <div className="overlay" />
             <div className="container">

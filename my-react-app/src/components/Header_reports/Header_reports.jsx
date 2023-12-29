@@ -2,16 +2,18 @@ import React from 'react';
 
 const Header_reports=(props) => {
 
-    const handleButtonClick = (buttonType) => {
-        // Handle button click based on the buttonType (e.g., perform actions)
-        console.log(`Button ${buttonType} clicked`);
-        if (buttonType === 'Home') {
-          props.onFormSwitch('AdminHomePage');
-        } else if (buttonType === 'AddCar') {
-            props.onFormSwitch('AddCarpage');
-            }
-    };
+  
+    const handleNavigation = (page) => {
+        // Call onFormSwitch with the page parameter to navigate
+        if (page === 'AdminHomePage')
 
+        {
+            props.onClick('AdminHomePage');
+        }
+        else{
+            props.onClick('AddCarpage');
+        }
+      };
     return (
         <div className="App">
             <>
@@ -23,8 +25,8 @@ const Header_reports=(props) => {
                         </button>
                         <div className="collapse navbar-collapse" id="ftco-nav">
                             <ul className="navbar-nav ml-auto">
-                                <li className="nav-item active"><a href='#' onClick={() => handleButtonClick('Home')} className="nav-link">Home</a></li>
-                                <li className="nav-item"><a href='#' onClick={() => handleButtonClick('AddCar')} className="nav-link">Add Car</a></li>
+                                <li className="nav-item active"><a href='#' onClick={() => handleNavigation('AdminHomePage')} className="nav-link">Home</a></li>
+                                <li className="nav-item"><a href='#' onClick={() => handleNavigation('AddCarPage')} className="nav-link">Add Car</a></li>
                             </ul>
                         </div>
                     </div>

@@ -129,7 +129,7 @@ app.post('/api/register', (req, res) => {
 
 // Route to handle viewing Cars
 app.get('/api/view-cars', (req, res) => {
-  console.log('Received POST request at /api/cars');
+  console.log('Received POST request at /api/view-cars');
     // Get the price of the car
   connection.query(
     'select * from Car_Rental_System.Car',

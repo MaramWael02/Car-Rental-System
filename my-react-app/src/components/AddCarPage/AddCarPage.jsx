@@ -38,7 +38,7 @@ export const ADDCAR = (props) => {
 
     return (
         <div className="auth-form-container">
-          <Header_Admin />
+          <Header_Admin navigate={props.onFormSwitch}/>
           <img  alt="background of a car" src="../images/bg_1.jpg" className="background_image"/>
           <form className="addcar-form" onSubmit={handleSubmit}>
           <h2 className="AddCarlabel">Add Car</h2>

@@ -1,6 +1,9 @@
 import React from 'react';
 
-const Header=() => {
+const Header=(props) => {
+    const handleNavigation = (page) => {
+        props.onClick(page);
+      };
 
     return (
         <div className="App">
@@ -13,9 +16,9 @@ const Header=() => {
                         </button>
                         <div className="collapse navbar-collapse" id="ftco-nav">
                             <ul className="navbar-nav ml-auto">
-                                <li className="nav-item active"><a href="/" className="nav-link">Home</a></li>
-                                <li className="nav-item"><a href="pricing.html" className="nav-link">Pricing</a></li>
-                                <li className="nav-item"><a href="car.html" className="nav-link">Cars</a></li>
+                                <li className="nav-item active"><a href="#" className="nav-link" onClick={() => handleNavigation('HomePage')}>Home</a></li>
+                                <li className="nav-item"><a href="#" className="nav-link" onClick={() => handleNavigation('pricing')}>Pricing</a></li>
+                                <li className="nav-item"><a href="#" className="nav-link" onClick={() => handleNavigation('view-cars')}>Cars</a></li>
                             </ul>
                         </div>
                     </div>

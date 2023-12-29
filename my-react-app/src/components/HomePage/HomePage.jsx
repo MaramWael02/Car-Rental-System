@@ -3,11 +3,11 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 
-const HomePage=() =>{
+const HomePage=(props) =>{
 
     return (
         <div>
-            <Header />
+            <Header onClick={props.onFormSwitch}/>
             <Main />
             <Footer />
         </div>

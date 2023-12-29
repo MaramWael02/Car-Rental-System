@@ -2,14 +2,9 @@ import React from 'react';
 
 const Header_Admin=(props) => {
 
-    const handleButtonClick = (buttonType) => {
-        // Handle button click based on the buttonType (e.g., perform actions)
-        console.log(`Button ${buttonType} clicked`);
-        if (buttonType === 'Home') {
-          props.onFormSwitch('AdminHomePage');
-        } else if (buttonType === 'Reports') {
-            props.onFormSwitch('ReportsPage');
-            }
+    const handleNavigation = (page) => {
+        // Handle Navigation based on the page parameter
+        props.navigate(page);
     };
 
     return (
@@ -23,8 +18,8 @@ const Header_Admin=(props) => {
                         </button>
                         <div className="collapse navbar-collapse" id="ftco-nav">
                             <ul className="navbar-nav ml-auto">
-                                <li className="nav-item active"><a href='#' onClick={() => handleButtonClick('Home')} className="nav-link">Home</a></li>
-                                <li className="nav-item"><a href='#' onClick={() => handleButtonClick('Reports')} className="nav-link">Reports</a></li>
+                                <li className="nav-item active"><a href='#' onClick={() => handleNavigation('AdminHomePage')} className="nav-link">Home</a></li>
+                                <li className="nav-item"><a href='#' onClick={() => handleNavigation('Reports')} className="nav-link">Reports</a></li>
                             </ul>
                         </div>
                     </div>
