@@ -156,8 +156,8 @@ app.post('/api/add-car', (req, res) => {
   const price_float = parseFloat(price);
   const year_int = parseInt(year);
   connection.query(
-    'insert into Car_Rental_System.Car (plate_id, model, year, office_id, price) values (?,?,?,?,?)', 
-    [plate_id, model, year_int, office_id_int, price_float],
+    'insert into Car_Rental_System.Car (plate_id, model, brand, year, office_id, price) values (?,?,?,?,?,?)', 
+    [plate_id, model, brand, year_int, office_id_int, price_float],
     (err, results) => {
       if (err) {
         console.error('Error during login:', err);
