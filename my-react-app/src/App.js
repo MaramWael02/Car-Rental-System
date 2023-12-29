@@ -6,7 +6,7 @@ import  {REGISTER}  from './components/register/Register';
 import HomePage from './components/HomePage/HomePage';
 import AdminHomePage from './components/AdminHomePage/Admin_Home';
 import { ADDCAR } from './components/AddCarPage/AddCarPage';
-
+import ReportsPage from './components/ReportPage/ReportPage';
 function App() {
   const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
   
@@ -27,7 +27,9 @@ function App() {
         
         : currentForm === 'AddCarpage' ?
         (<ADDCAR onFormSwitch={toggleform}/>)
-        : 
+        : currentForm === 'Reports' ?
+        (<ReportsPage onFormSwitch={toggleform}/>)
+        :
         (<HomePage />)
       
       }
