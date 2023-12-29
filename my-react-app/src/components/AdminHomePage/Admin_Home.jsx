@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React from "react";
 
 
 const AdminHomePage = (props) => {
@@ -9,7 +9,7 @@ const AdminHomePage = (props) => {
     if (buttonType === 'Reports') {
       props.onFormSwitch('Reports');
     } else if (buttonType === 'AddCar') {
-        props.onFormSwitch('AddCar');
+        props.onFormSwitch('AddCarpage');
         }
   };
 

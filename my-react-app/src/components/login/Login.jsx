@@ -23,7 +23,7 @@ export const LOGIN = (props) => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Login successful:', data);
+                console.log('Login successful:', data); 
                 props.onFormSwitch('HomePage')
                 // Handle successful login (e.g., redirect to dashboard)
             }
@@ -49,7 +49,7 @@ export const LOGIN = (props) => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Admin Login successful:', data);
+                console.log('Admin Login successful:', data); 
                 props.onFormSwitch('AdminHomePage')
             }
         }

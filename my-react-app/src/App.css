@@ -1,5 +1,5 @@
 
-.login-form, .register-form{
+.login-form, .register-form, .addcar-form{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -30,7 +30,7 @@
   border-color: transparent;
   border-style: solid; /* Add this line */
 }
-.LoginLabel, .RegisterLabel{
+.LoginLabel, .RegisterLabel, .AddCarlabel{
   color: white;
 }
 
