@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header_Admin from "../Header_Admin/Header_Admin";
 
 export const ADDCAR = (props) => {
     const [plate_id, setPlateid] = useState('');
@@ -37,6 +38,7 @@ export const ADDCAR = (props) => {
 
     return (
         <div className="auth-form-container">
+          <Header_Admin />
           <img  alt="background of a car" src="../images/bg_1.jpg" className="background_image"/>
           <form className="addcar-form" onSubmit={handleSubmit}>
           <h2 className="AddCarlabel">Add Car</h2>
