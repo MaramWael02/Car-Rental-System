@@ -8,7 +8,7 @@ export const LOGIN = (props) => {
     const [selectedOption, setSelectedOption] = useState('Customer');
 
     const handleOptionChange = (event) => {
-      setSelectedOption(event.target.value);
+        setSelectedOption(event.target.value);
     };
     const handleCustomerlogin = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
@@ -25,20 +25,20 @@ export const LOGIN = (props) => {
                 const data = await response.json();
                 console.log('Login successful:', data);
                 props.onFormSwitch('HomePage')
-        // Handle successful login (e.g., redirect to dashboard)
+                // Handle successful login (e.g., redirect to dashboard)
             }
-    else {
-         const errorData = await response.json();
-         setError(errorData.message || 'Login failed');
-     }
- } catch (error) {
-     console.error('Error during login:', error);
-     setError('Hello Server error');
- }
+            else {
+                const errorData = await response.json();
+                setError(errorData.message || 'Login failed');
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            setError('Hello Server error');
+        }
     };
-    const handleAdminlogin = async (e) => { 
+    const handleAdminlogin = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
-        try{
+        try {
             const response = await fetch('http://localhost:8000/api/adminlogin', {
                 method: 'POST',
                 headers: {
@@ -53,7 +53,7 @@ export const LOGIN = (props) => {
                 props.onFormSwitch('AdminHomePage')
             }
         }
-        catch(error){
+        catch (error) {
             console.error('Error during login:', error);
             setError('Hello Server error');
         }
@@ -62,15 +62,16 @@ export const LOGIN = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
         if (selectedOption === 'Customer') {
-         handleCustomerlogin(e);
-     }
-    else if (selectedOption === 'Admin') {
-        handleAdminlogin(e);
-    } }
+            handleCustomerlogin(e);
+        }
+        else if (selectedOption === 'Admin') {
+            handleAdminlogin(e);
+        }
+    }
 
     return (
         <div className="auth-form-container">
-            <img src="../images/bg_1.jpg" className="background_image" />
+            <img  alt="background of a car" src="../images/bg_1.jpg" className="background_image" />
             <form className="login-form" onSubmit={handleSubmit}>
                 <h2 className="LoginLabel">Login</h2>
                 <label htmlFor="username">Username</label>
@@ -94,25 +95,25 @@ export const LOGIN = (props) => {
                     required
                 />
                 <div className="radio-container">
-                <label className="radio-label">
-                    <input
-                        type="radio"
-                        value="Customer"
-                        checked={selectedOption === 'Customer'}
-                        onChange={handleOptionChange}
-                    />
-                    Customer
-                </label>
+                    <label className="radio-label">
+                        <input
+                            type="radio"
+                            value="Customer"
+                            checked={selectedOption === 'Customer'}
+                            onChange={handleOptionChange}
+                        />
+                        Customer
+                    </label>
 
-                <label className="radio-label">
-                    <input
-                        type="radio"
-                        value="Admin"
-                        checked={selectedOption === 'Admin'}
-                        onChange={handleOptionChange}
-                    />
-                    Admin
-                </label>
+                    <label className="radio-label">
+                        <input
+                            type="radio"
+                            value="Admin"
+                            checked={selectedOption === 'Admin'}
+                            onChange={handleOptionChange}
+                        />
+                        Admin
+                    </label>
                 </div>
 
                 <button type="submit" onClick={handleSubmit}>Login</button>

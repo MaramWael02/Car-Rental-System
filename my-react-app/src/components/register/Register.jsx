@@ -40,7 +40,7 @@ export const REGISTER = (props) => {
 
     return (
         <div className="auth-form-container">
-            <img src="../images/bg_1.jpg" className="background_image"/>
+            <img  alt="background of a car" src="../images/bg_1.jpg" className="background_image"/>
           <form className="register-form" onSubmit={handleSubmit}>
           <h2 className="RegisterLabel">Register</h2>
             <label htmlFor="fname">First Name</label>

@@ -16,6 +16,20 @@
   border-color: transparent;
   border-style: solid; /* Add this line */
 }
+.Admin_page{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-bottom: 4.3rem;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  margin: auto;
+  flex-direction: column;
+  opacity: 0.9;
+  background-color: rgba(23, 53, 92, 0.6);
+  border-color: transparent;
+  border-style: solid; /* Add this line */
+}
 .LoginLabel, .RegisterLabel{
   color: white;
 }
