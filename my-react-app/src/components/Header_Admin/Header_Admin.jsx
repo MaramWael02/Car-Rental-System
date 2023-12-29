@@ -1,6 +1,16 @@
 import React from 'react';
 
-const Header_Admin=() => {
+const Header_Admin=(props) => {
+
+    const handleButtonClick = (buttonType) => {
+        // Handle button click based on the buttonType (e.g., perform actions)
+        console.log(`Button ${buttonType} clicked`);
+        if (buttonType === 'Reports') {
+          props.onFormSwitch('Reports');
+        } else if (buttonType === 'AddCar') {
+            props.onFormSwitch('AddCarpage');
+            }
+    };
 
     return (
         <div className="App">
@@ -13,8 +23,8 @@ const Header_Admin=() => {
                         </button>
                         <div className="collapse navbar-collapse" id="ftco-nav">
                             <ul className="navbar-nav ml-auto">
-                                <li className="nav-item active"><a href="/" className="nav-link">Reports</a></li>
-                                <li className="nav-item"><a href="pricing.html" className="nav-link">Add Car</a></li>
+                                <li className="nav-item active"><a onClick={() => handleButtonClick('Reports')} className="nav-link">Reports</a></li>
+                                <li className="nav-item"><a onClick={() => handleButtonClick('AddCar')} className="nav-link">Add Car</a></li>
                             </ul>
                         </div>
                     </div>
