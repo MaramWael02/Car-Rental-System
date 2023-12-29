@@ -25,7 +25,10 @@ function App() {
         : currentForm === 'AdminHomePage' ?
         (<AdminHomePage onFormSwitch={toggleform}/>)
         
-        : (<HomePage />)
+        : currentForm === 'AddCarpage' ?
+        (<ADDCAR onFormSwitch={toggleform}/>)
+        : 
+        (<HomePage />)
       
       }
 
