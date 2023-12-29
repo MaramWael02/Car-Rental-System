@@ -12,7 +12,7 @@
   justify-content: center;
   opacity: 0.9;
   /*background-image: linear-gradient(45deg, #93dcee 30%, #1347b8 90%);*/
-  background-color: rgba(23, 53, 92, 0.6);
+  background-color: rgba(23, 53, 92, 0.7);
   border-color: transparent;
   border-style: solid; /* Add this line */
 }
@@ -26,7 +26,7 @@
   margin: auto;
   flex-direction: column;
   opacity: 0.9;
-  background-color: rgba(23, 53, 92, 0.6);
+  background-color: rgba(23, 53, 92, 0.7);
   border-color: transparent;
   border-style: solid; /* Add this line */
 }
@@ -40,6 +40,8 @@
   left: 0;
   right: 0;
   bottom: 0;
+  opacity: 0.9;
+  filter: brightness(70%);
   background-size: cover;
   background-position: center;
 }
