@@ -7,7 +7,7 @@ import HomePage from './components/HomePage/HomePage';
 import AdminHomePage from './components/AdminHomePage/Admin_Home';
 import { ADDCAR } from './components/AddCarPage/AddCarPage';
 import ReportsPage from './components/ReportPage/ReportPage';
-import { CarList } from './components/Car/Car';
+import CarPage from './components/CarPage/CarPage';
 function App() {
   const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
   
@@ -31,7 +31,7 @@ function App() {
         : currentForm === 'Reports' ?
         (<ReportsPage onFormSwitch={toggleform}/>)
         : currentForm === 'view-cars' ?
-        (<CarList onFormSwitch={toggleform}/>)
+        (<CarPage onFormSwitch={toggleform}/>)
         : currentForm === 'HomePage' ?
         (<HomePage onFormSwitch={toggleform}/>)
         : null

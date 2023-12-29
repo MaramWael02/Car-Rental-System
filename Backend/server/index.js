@@ -138,7 +138,8 @@ app.get('/api/view-cars', (req, res) => {
             console.error('Error during login:', err);
             return res.status(500).json({ message: 'Server error' });
         }
-        res.status(200).json(cars);
+        console.log('cars', cars);
+       return res.status(200).json(cars);
     }
   );
 

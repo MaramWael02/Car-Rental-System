@@ -1,14 +1,13 @@
 import React from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Car from '../Car/Car';
+import {CarList} from "../Car/Car";
 
-const CarPage=() =>{
-
+const CarPage=(props) =>{
     return(
         <div>
-            <Header />
-            <Car />
+            <Header onClick={props.onFormSwitch}/>
+            <CarList />
             <Footer />
         </div>
     );
