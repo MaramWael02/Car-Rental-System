@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Header_Admin=(props) => {
+const Header_reports=(props) => {
 
     const handleButtonClick = (buttonType) => {
         // Handle button click based on the buttonType (e.g., perform actions)
         console.log(`Button ${buttonType} clicked`);
         if (buttonType === 'Home') {
           props.onFormSwitch('AdminHomePage');
-        } else if (buttonType === 'Reports') {
-            props.onFormSwitch('ReportsPage');
+        } else if (buttonType === 'AddCar') {
+            props.onFormSwitch('AddCarpage');
             }
     };
 
@@ -24,7 +24,7 @@ const Header_Admin=(props) => {
                         <div className="collapse navbar-collapse" id="ftco-nav">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active"><a href='#' onClick={() => handleButtonClick('Home')} className="nav-link">Home</a></li>
-                                <li className="nav-item"><a href='#' onClick={() => handleButtonClick('Reports')} className="nav-link">Reports</a></li>
+                                <li className="nav-item"><a href='#' onClick={() => handleButtonClick('AddCar')} className="nav-link">Add Car</a></li>
                             </ul>
                         </div>
                     </div>
@@ -33,4 +33,4 @@ const Header_Admin=(props) => {
         </div>
     );
 }
-export default Header_Admin;
+export default Header_reports;
