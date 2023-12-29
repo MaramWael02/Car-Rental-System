@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 
 const Main = () => {
-    /*const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
-    
-    const toggleform = (formName) => {
-      setCurrentForm(formName);
-    }*/
+
 
     return (
         <div className="App">
@@ -18,7 +14,7 @@ const Main = () => {
                                 <div className="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
                                     <div className="col-lg-8 ftco-animate">
                                         <div className="text w-100 text-center mb-md-5 pb-md-5">
-                                            <h1 className="mb-4">Fast and Easy Way To Rent A Car</h1>
+                                            <h1 htmlFor='true' className="mb-4">Fast and Easy Way To Rent A Car</h1>
                                             <p style={{ fontSize: 18 }}>Unleash Your Dreams</p>
                                         </div>
                                     </div>
@@ -180,77 +176,6 @@ const Main = () => {
                                                             <p className="price ml-auto">$500 <span>/day</span></p>
                                                         </div>
                                                         <p className="d-flex mb-0 d-block"><a href="#" className="btn btn-primary py-2 mr-1">Book now</a> <a href="#" className="btn btn-secondary py-2 ml-1">Details</a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section className="ftco-section testimony-section bg-light">
-                            <div className="container">
-                                <div className="row justify-content-center mb-5">
-                                    <div className="col-md-7 text-center heading-section ftco-animate">
-                                        <span className="subheading">Testimonial</span>
-                                        <h2 className="mb-3">Happy Clients</h2>
-                                    </div>
-                                </div>
-                                <div className="row ftco-animate">
-                                    <div className="col-md-12">
-                                        <div className="carousel-testimony owl-carousel ftco-owl">
-                                            <div className="item">
-                                                <div className="testimony-wrap rounded text-center py-4 pb-5">
-                                                    <div className="user-img mb-2" style={{ backgroundImage: 'url(images/person_1.jpg)' }}>
-                                                    </div>
-                                                    <div className="text pt-4">
-                                                        <p className="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                                        <p className="name">Roger Scott</p>
-                                                        <span className="position">Marketing Manager</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="item">
-                                                <div className="testimony-wrap rounded text-center py-4 pb-5">
-                                                    <div className="user-img mb-2" style={{ backgroundImage: 'url(images/person_2.jpg)' }}>
-                                                    </div>
-                                                    <div className="text pt-4">
-                                                        <p className="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                                        <p className="name">Roger Scott</p>
-                                                        <span className="position">Interface Designer</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="item">
-                                                <div className="testimony-wrap rounded text-center py-4 pb-5">
-                                                    <div className="user-img mb-2" style={{ backgroundImage: 'url(images/person_3.jpg)' }}>
-                                                    </div>
-                                                    <div className="text pt-4">
-                                                        <p className="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                                        <p className="name">Roger Scott</p>
-                                                        <span className="position">UI Designer</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="item">
-                                                <div className="testimony-wrap rounded text-center py-4 pb-5">
-                                                    <div className="user-img mb-2" style={{ backgroundImage: 'url(images/person_1.jpg)' }}>
-                                                    </div>
-                                                    <div className="text pt-4">
-                                                        <p className="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                                        <p className="name">Roger Scott</p>
-                                                        <span className="position">Web Developer</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="item">
-                                                <div className="testimony-wrap rounded text-center py-4 pb-5">
-                                                    <div className="user-img mb-2" style={{ backgroundImage: 'url(images/person_1.jpg)' }}>
-                                                    </div>
-                                                    <div className="text pt-4">
-                                                        <p className="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                                        <p className="name">Roger Scott</p>
-                                                        <span className="position">System Analyst</span>
                                                     </div>
                                                 </div>
                                             </div>
