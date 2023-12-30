@@ -18,13 +18,36 @@ export const CarList = () => {
         });
     }, []); // Empty dependency array means this effect runs only once after initial render
     return (
-      <div>
-        <h2>List of Cars</h2>
-        <ul>
-          {cars.map((car) => (
-            <li key={car.id}>{car.model}</li> // Adjust this to match your car data structure
-          ))}
-        </ul>
+     <div className="App">
+      <>
+      <section className="ftco-section bg-light">
+            <div className="container">
+                <div className="row">
+                {cars.map((car, index) => (
+          <div key={index} className="col-md-4">
+            <div className="car-wrap rounded ftco-animate">
+              <div className="img rounded d-flex align-items-end" style={{backgroundImage: `url(${car.image})`}}>
+              </div>
+              <div className="text">
+                <h2 className="mb-0"><a href="#">{car.name}</a></h2>
+                <div className="d-flex mb-3">
+                  <span className="cat">{car.brand}</span>
+                  <p className="price ml-auto">${car.price} <span>/day</span></p>
+                </div>
+                <p className="d-flex mb-0 d-block">
+                  <a href="#" className="btn btn-primary py-2 mr-1">Book now</a> 
+                  <a href="#" className="btn btn-secondary py-2 ml-1">Details</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+ 
+                </div>
+            </div>
+        </section>
+
+      </>
       </div>
     );
   }
