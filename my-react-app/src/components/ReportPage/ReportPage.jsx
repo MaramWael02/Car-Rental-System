@@ -8,6 +8,36 @@ const ReportsPage = (props) => {
     const [plate_id, setCarPlateID] = useState('');
     const [day, setCarDay] = useState('');
     const [username, setUsername] = useState('');
+    const [tableData, setTableData] = useState([]);
+    const [error, setError] = useState('');
+
+    const ReportTable1 = ({ data }) => {
+        return (
+          <table>
+            <thead>
+              <tr>
+                <th>Reservation ID</th>
+                <th>Customer's Username</th>
+                <th>Plate ID</th>
+                <th>Office ID</th>
+                <th>Reservation Date</th>
+                {/*ADD MORE COLUMNS AS NEEDEDDDD */}
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.reservation_id}</td>
+                  <td>{item.customer_id}</td>
+                  <td>{item.plate_id}</td>
+                  <td>{item.office_id}</td>
+                  <td>{item.reservation_date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
+      };
 
     const handleReportTypeChange = (event) => {
         setReportType(event.target.value);
@@ -44,8 +74,9 @@ const ReportsPage = (props) => {
 
             if (response.ok) {
                 const data = await response.json();
+                setTableData(data);
                 console.log('handleReservationPeriod successful:', data); 
-                
+
            }
         }
         catch (error) {
@@ -173,6 +204,7 @@ const ReportsPage = (props) => {
 
                 </form>
             </div>
+            {tableData.length && <ReportTable1 data={tableData} />}
         </div>
     );
 };
