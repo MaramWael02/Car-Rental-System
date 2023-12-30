@@ -1,6 +1,39 @@
 import React, { useState } from 'react';
 
 const Main = () => {
+const [customer_id, setUsername] = useState('');
+const [office_id, setOfficeID] = useState('');
+const [pick_up_date, setPickUpdDate] = useState('');
+const [return_date, setReturnDate] = useState('');
+const [plate_id, setPlateID] = useState('');
+const [error, setError] = useState('');
+
+const handleInput = async (e) =>{
+    e.preventDefault();
+    try {
+            const response = await fetch('http://localhost:8000/api/reserve', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ office_id, pick_up_date, return_date, plate_id, customer_id }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('reservtion successful:', data); 
+                // Handle successful login (e.g., redirect to dashboard)
+            }
+            else {
+                const errorData = await response.json();
+                setError(errorData.message || 'reservation failed');
+            }
+        } catch (error) {
+            console.error('Error during reservation:', error);
+            setError('Hello Server error');
+        }
+    };
+
 
 
     return (
@@ -31,26 +64,59 @@ const Main = () => {
                                                 <form action="#" className="request-form ftco-animate bg-primary">
                                                     <h2>Make your trip</h2>
                                                     <div className="form-group">
+                                                        <label htmlFor className="label">Username</label>
+                                                        <input 
+                                                        type="text" 
+                                                        className="form-control" 
+                                                        placeholder="Enter your username" 
+                                                        value={customer_id}
+                                                        onChange={(e) => setUsername(e.target.value)}
+                                                        />
+                                                    </div>
+                                                    <div className="form-group">
                                                         <label htmlFor className="label">Pick-up location</label>
-                                                        <input type="text" className="form-control" placeholder="Office ID" />
+                                                        <input type="text" 
+                                                        className="form-control" 
+                                                        placeholder="Office ID" 
+                                                        value={office_id}
+                                                        onChange={(e) => setOfficeID(e.target.value)}
+                                                        />
                                                     </div>
                                                     <div className="form-group">
                                                         <label htmlFor className="label">Car</label>
-                                                        <input type="text" className="form-control" placeholder="Car's plate ID" />
+                                                        <input type="text" 
+                                                        className="form-control" 
+                                                        placeholder="Car's plate ID" 
+                                                        value={plate_id}
+                                                        onChange={(e) => setPlateID(e.target.value)}
+                                                        />
                                                     </div>
+                            
                                                     <div className="d-flex">
                                                         <div className="form-group mr-2">
                                                             <label htmlFor className="label">Pick-up date</label>
-                                                            <input type="date" className="form-control" id="book_pick_date" placeholder="Date" />
+                                                            <input type="date" 
+                                                            className="form-control" 
+                                                            id="book_pick_date" 
+                                                            placeholder="Date" 
+                                                            value={pick_up_date}
+                                                            onChange={(e) => setPickUpdDate(e.target.value)}
+                                                            />
                                                         </div>
                                                         <div className="form-group ml-2">
                                                             <label htmlFor className="label">Drop-off date</label>
-                                                            <input type="date" className="form-control" id="book_off_date" placeholder="Date" />
+                                                            <input type="date" 
+                                                            className="form-control" 
+                                                            id="book_off_date" 
+                                                            placeholder="Date" 
+                                                            value={return_date}
+                                                            onChange={(e) => setReturnDate(e.target.value)}
+                                                            />
                                                         </div>
                                                     </div>
                                                     
                                                     <div className="form-group">
-                                                        <input type="submit" className="btn btn-secondary py-3 px-4" />
+                                                        <input type="submit" onClick={handleInput} className="btn btn-secondary py-3 px-4" />
                                                     </div>
                                                 </form>
                                             </div>
