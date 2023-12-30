@@ -32,28 +32,25 @@ const Main = () => {
                                                     <h2>Make your trip</h2>
                                                     <div className="form-group">
                                                         <label htmlFor className="label">Pick-up location</label>
-                                                        <input type="text" className="form-control" placeholder="City, Airport, Station, etc" />
+                                                        <input type="text" className="form-control" placeholder="Office ID" />
                                                     </div>
                                                     <div className="form-group">
-                                                        <label htmlFor className="label">Drop-off location</label>
-                                                        <input type="text" className="form-control" placeholder="City, Airport, Station, etc" />
+                                                        <label htmlFor className="label">Car</label>
+                                                        <input type="text" className="form-control" placeholder="Car's plate ID" />
                                                     </div>
                                                     <div className="d-flex">
                                                         <div className="form-group mr-2">
                                                             <label htmlFor className="label">Pick-up date</label>
-                                                            <input type="text" className="form-control" id="book_pick_date" placeholder="Date" />
+                                                            <input type="date" className="form-control" id="book_pick_date" placeholder="Date" />
                                                         </div>
                                                         <div className="form-group ml-2">
                                                             <label htmlFor className="label">Drop-off date</label>
-                                                            <input type="text" className="form-control" id="book_off_date" placeholder="Date" />
+                                                            <input type="date" className="form-control" id="book_off_date" placeholder="Date" />
                                                         </div>
                                                     </div>
+                                                    
                                                     <div className="form-group">
-                                                        <label htmlFor className="label">Pick-up time</label>
-                                                        <input type="text" className="form-control" id="time_pick" placeholder="Time" />
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <input type="submit" defaultValue="Rent A Car Now" className="btn btn-secondary py-3 px-4" />
+                                                        <input type="submit" className="btn btn-secondary py-3 px-4" />
                                                     </div>
                                                 </form>
                                             </div>
@@ -86,97 +83,6 @@ const Main = () => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <p><a href="#" className="btn btn-primary py-3 px-4">Reserve Your Perfect Car</a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section className="ftco-section ftco-about">
-                            <div className="container">
-                                <div className="row no-gutters">
-                                    <div className="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: 'url(images/about.jpg)' }}>
-                                    </div>
-                                    <div className="col-md-6 wrap-about ftco-animate">
-                                        <div className="heading-section heading-section-white pl-md-5">
-                                            <span className="subheading">About us</span>
-                                            <h2 className="mb-4">Welcome to Carbook</h2>
-                                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                                            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                                            <p><a href="#" className="btn btn-primary py-3 px-4">Search Vehicle</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <section className="ftco-section ftco-no-pt bg-light">
-                            <div className="container">
-                                <div className="row justify-content-center">
-                                    <div className="col-md-12 heading-section text-center ftco-animate mb-5">
-                                        <span className="subheading">What we offer</span>
-                                        <h2 className="mb-2">Featured Vehicles</h2>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <div className="carousel-car owl-carousel">
-                                            <div className="item">
-                                                <div className="car-wrap rounded ftco-animate">
-                                                    <div className="img rounded d-flex align-items-end" style={{ backgroundImage: 'url(images/car-1.jpg)' }}>
-                                                    </div>
-                                                    <div className="text">
-                                                        <h2 className="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                                                        <div className="d-flex mb-3">
-                                                            <span className="cat">Cheverolet</span>
-                                                            <p className="price ml-auto">$500 <span>/day</span></p>
-                                                        </div>
-                                                        <p className="d-flex mb-0 d-block"><a href="#" className="btn btn-primary py-2 mr-1">Book now</a> <a href="#" className="btn btn-secondary py-2 ml-1">Details</a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="item">
-                                                <div className="car-wrap rounded ftco-animate">
-                                                    <div className="img rounded d-flex align-items-end" style={{ backgroundImage: 'url(images/car-2.jpg)' }}>
-                                                    </div>
-                                                    <div className="text">
-                                                        <h2 className="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                                                        <div className="d-flex mb-3">
-                                                            <span className="cat">Cheverolet</span>
-                                                            <p className="price ml-auto">$500 <span>/day</span></p>
-                                                        </div>
-                                                        <p className="d-flex mb-0 d-block"><a href="#" className="btn btn-primary py-2 mr-1">Book now</a> <a href="#" className="btn btn-secondary py-2 ml-1">Details</a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="item">
-                                                <div className="car-wrap rounded ftco-animate">
-                                                    <div className="img rounded d-flex align-items-end" style={{ backgroundImage: 'url(images/car-3.jpg)' }}>
-                                                    </div>
-                                                    <div className="text">
-                                                        <h2 className="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                                                        <div className="d-flex mb-3">
-                                                            <span className="cat">Cheverolet</span>
-                                                            <p className="price ml-auto">$500 <span>/day</span></p>
-                                                        </div>
-                                                        <p className="d-flex mb-0 d-block"><a href="#" className="btn btn-primary py-2 mr-1">Book now</a> <a href="#" className="btn btn-secondary py-2 ml-1">Details</a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="item">
-                                                <div className="car-wrap rounded ftco-animate">
-                                                    <div className="img rounded d-flex align-items-end" style={{ backgroundImage: 'url(images/car-4.jpg)' }}>
-                                                    </div>
-                                                    <div className="text">
-                                                        <h2 className="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-                                                        <div className="d-flex mb-3">
-                                                            <span className="cat">Cheverolet</span>
-                                                            <p className="price ml-auto">$500 <span>/day</span></p>
-                                                        </div>
-                                                        <p className="d-flex mb-0 d-block"><a href="#" className="btn btn-primary py-2 mr-1">Book now</a> <a href="#" className="btn btn-secondary py-2 ml-1">Details</a></p>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -192,7 +98,7 @@ const Main = () => {
                                         <div className="block-18">
                                             <div className="text text-border d-flex align-items-center">
                                                 <strong className="number" data-number={60}>0</strong>
-                                                <span>Year <br />Experienced</span>
+                                                <span>Total <br />Reservations</span>
                                             </div>
                                         </div>
                                     </div>
