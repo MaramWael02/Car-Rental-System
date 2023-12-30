@@ -38,7 +38,7 @@ const ReportsPage = (props) => {
             <div>
                 <form className="reports-form">
                     <h1 className="reports-header">Select Report Type</h1>
-                    <select value={reportType} onChange={handleReportTypeChange}>
+                    <select className="select-menu" value={reportType} onChange={handleReportTypeChange}>
                         <option value="">Select...</option>
                         <option value="reservationPeriod">Reservation in a Period</option>
                         <option value="reservationCarPeriod">Car Reservations in a Period</option>
@@ -49,7 +49,7 @@ const ReportsPage = (props) => {
                     </select>
 
                     {reportType === 'reservationPeriod' && (
-                        <form onSubmit={handleSubmit}>
+                        <form className="report-subform" onSubmit={handleSubmit}>
                             <label className="reports-label">Start Date:</label>
                             <input
                                 type="date"
@@ -66,7 +66,7 @@ const ReportsPage = (props) => {
                         </form>
                     )}
                     {reportType === 'reservationCarPeriod' && (
-                        <form onSubmit={handleSubmit}>
+                        <form className="report-subform" onSubmit={handleSubmit}>
                             <label className="reports-label">Car's Plate ID:</label>
                             <input
                                 value={carPlateID}
@@ -88,8 +88,8 @@ const ReportsPage = (props) => {
                         </form>
                     )}
                     {reportType === 'CarDay' && (
-                        <form onSubmit={handleSubmit}>
-                            <label>Day</label>
+                        <form className="report-subform" onSubmit={handleSubmit}>
+                            <label className="reports-label">Day</label>
                             <input
                                 type="date"
                                 value={CarDay}
@@ -99,7 +99,7 @@ const ReportsPage = (props) => {
                         </form>
                     )}
                     {reportType === 'reservationCustomer' && (
-                        <form onSubmit={handleSubmit}>
+                        <form className="report-subform" onSubmit={handleSubmit}>
                             <label className="reports-label">Customer's username</label>
                             <input
                                 value={username}
@@ -109,7 +109,7 @@ const ReportsPage = (props) => {
                         </form>
                     )}
                     {reportType === 'payments' && (
-                        <form onSubmit={handleSubmit}>
+                        <form className="report-subform" onSubmit={handleSubmit}>
                             <label className="reports-label">Start Date:</label>
                             <input
                                 type="date"

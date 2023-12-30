@@ -18,20 +18,30 @@
   border-style: solid; /* Add this line */
 }
 
+.select-menu{
+  position: relative;
+  top: -8px;
+  right: 38%;
+  width: 20%;
+  height: 45px;
+  border-radius: 0.5rem;
+  border-width: 3px;
+  border-color: rgb(3, 12, 88);;
+}
+
 .reports-form{
   position: absolute;
-  top: 50%;
-  right: 50%;
-  transform:translate(50%, -50%);
+  top: 15%;
+  left: 10%;
   text-align: center;
+  width: 80%;
+  min-height: 70%;
   text-shadow: 0cap 0px 1cqmax #ffffff;
-  border-color: black;
+  border-color: whitesmoke;
+  border-width: 2px;
   border-style: solid; /* Add this line */
-  display: flex;
   border-radius: 1rem;
-  padding: 80px;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction:row;
   background-color: rgba(23, 53, 92, 0.7);
   opacity: 0.8;
 }
@@ -54,14 +64,25 @@
   color: white;
 }
 .reports-header{
-  color: black;
+  color: white;
   font-size: 2rem;
-  margin: 0rem 0rem 2rem;
+  text-shadow: 0cap 0px 1cqmax whitesmoke;
+  margin: 1rem 1rem 1.5rem -70rem;
 }
 .reports-label{
-  text-align: center;
   font-size: 1rem;
+  position: relative;
+  width: fit-content;
+  padding-left: 5px;
+  margin-right: 10px;
 }
+.report-subform{
+  position: fixed;
+  top: 22.88%;
+  right: 22%;
+  flex-direction: row;
+}
+
 .background_image{
   position: fixed;
   top: 0;
@@ -137,7 +158,11 @@ button{
   width: 200px;
 }
 .reportbutton{
-  margin: 2rem 15rem 1rem;
+  position: fixed;
+  top: 15.2%;
+  right: 7%;
+  width: 9%;
+  height: 44px;
 }
 
 .link-button{
