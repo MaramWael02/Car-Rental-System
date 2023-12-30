@@ -11,7 +11,7 @@ const [error, setError] = useState('');
 const handleInput = async (e) =>{
     e.preventDefault();
     try {
-            const response = await fetch('http://localhost:8000/api/reserve', {
+            const response = await fetch('http://localhost:8000/api/reserve-car', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -71,6 +71,7 @@ const handleInput = async (e) =>{
                                                         placeholder="Enter your username" 
                                                         value={customer_id}
                                                         onChange={(e) => setUsername(e.target.value)}
+                                                        required
                                                         />
                                                     </div>
                                                     <div className="form-group">
@@ -80,6 +81,7 @@ const handleInput = async (e) =>{
                                                         placeholder="Office ID" 
                                                         value={office_id}
                                                         onChange={(e) => setOfficeID(e.target.value)}
+                                                        required
                                                         />
                                                     </div>
                                                     <div className="form-group">
@@ -89,6 +91,7 @@ const handleInput = async (e) =>{
                                                         placeholder="Car's plate ID" 
                                                         value={plate_id}
                                                         onChange={(e) => setPlateID(e.target.value)}
+                                                        required
                                                         />
                                                     </div>
                             
@@ -101,6 +104,7 @@ const handleInput = async (e) =>{
                                                             placeholder="Date" 
                                                             value={pick_up_date}
                                                             onChange={(e) => setPickUpdDate(e.target.value)}
+                                                            required
                                                             />
                                                         </div>
                                                         <div className="form-group ml-2">
@@ -111,12 +115,14 @@ const handleInput = async (e) =>{
                                                             placeholder="Date" 
                                                             value={return_date}
                                                             onChange={(e) => setReturnDate(e.target.value)}
+                                                            required
                                                             />
                                                         </div>
                                                     </div>
                                                     
-                                                    <div className="form-group">
-                                                        <input type="submit" onClick={handleInput} className="btn btn-secondary py-3 px-4" />
+                                                    <div>
+                                                        <button type="submit" onClick={handleInput}>Login</button>
+                                                        {error && <p className="error-message">{error}</p>}
                                                     </div>
                                                 </form>
                                             </div>

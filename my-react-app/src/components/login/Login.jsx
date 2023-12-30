@@ -12,7 +12,7 @@ export const LOGIN = (props) => {
     };
     const handleCustomerlogin = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
-        /*try {
+        try {
             const response = await fetch('http://localhost:8000/api/login', {
                 method: 'POST',
                 headers: {
@@ -23,10 +23,10 @@ export const LOGIN = (props) => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Login successful:', data); */
+                console.log('Login successful:', data); 
                 props.onFormSwitch('HomePage')
                 // Handle successful login (e.g., redirect to dashboard)
-           /* }
+            }
             else {
                 const errorData = await response.json();
                 setError(errorData.message || 'Login failed');
@@ -34,11 +34,11 @@ export const LOGIN = (props) => {
         } catch (error) {
             console.error('Error during login:', error);
             setError('Hello Server error');
-        }*/
+        }
     };
     const handleAdminlogin = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
-      /*  try {
+        try {
             const response = await fetch('http://localhost:8000/api/adminlogin', {
                 method: 'POST',
                 headers: {
@@ -49,14 +49,14 @@ export const LOGIN = (props) => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Admin Login successful:', data); */
+                console.log('Admin Login successful:', data); 
                 props.onFormSwitch('AdminHomePage')
-           /* }
+           }
         }
         catch (error) {
             console.error('Error during login:', error);
             setError('Hello Server error');
-        }*/
+        }
     }
 
     const handleSubmit = async (e) => {

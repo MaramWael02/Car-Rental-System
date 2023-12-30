@@ -102,37 +102,7 @@ app.post('/api/adminlogin', (req, res) => {
 
   });
 });
-// Route to handle Car Reservations
-app.post('api/reserve', (req,res) => {
-  const {office_id, pick_up_date, return_date, plate_id, customer_id} = req.body;
-  console.log('Received POST request at api/reserve');
-  connection.query('Select * From Car_Rental_System.Car where plate_id = ?',
-  [plate_id], 
-  (err, results) =>{
-    if (err){
-      console.error('Error during retrieving Car data:', err);
-      return res.status(500).json({ message: 'Server error' });
-      
-    }
-    price = results.price;
-  }
-  );
-  console.log('Username', customer_id);
-  const office_id_int = parseInt(office_id);
-  connection.query('Insert into Car_Rental_System.Reserve (customer_id, plate_id, office_id, pick_up_date, return_date, price) values(?,?,?,?,?,?)',
-  [customer_id,plate_id,office_id_int,pick_up_date,return_date,price],
-  (err, results) => {
-    if (err) {
-      console.error('Error during login:', err);
-      return res.status(500).json({ message: 'Server error' });
-    }
 
-    console.log('');
-    return res.status(200).json({ message: 'Car Reserved Successfully' });
-
-  })
-}
-)
 // Route to handle User Registerations
 app.post('/api/register', (req, res) => {
   const { email, password, phoneNum, fname, lname, address, username, carLicense  } = req.body;
@@ -156,6 +126,46 @@ app.post('/api/register', (req, res) => {
   );
   
 });
+// Route to handle Car Reservations
+app.post('/api/reserve-car', (req, res) => {
+  const { office_id, pick_up_date, return_date, plate_id, customer_id } = req.body;
+  console.log('Received POST request at /api/reserve-car');
+  console.log('office_id, pick_up_date, return_date, plate_id, customer_id', office_id, pick_up_date, return_date, plate_id, customer_id);
+  const pick_up_date_date = new Date(pick_up_date);
+  const return_date_date = new Date(return_date);
+  const office_id_int = parseInt(office_id);  
+
+  connection.query('SELECT * FROM Car_Rental_System.Car WHERE plate_id = ?', [plate_id], (err, results) => {
+    if (err) {
+      console.error('Error during car selection:', err);
+      return res.status(500).json({ message: 'Server error' });
+    }
+
+    if (results.length === 0) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    const car = results[0];
+    const price = car.price;
+    console.log('price', price);
+
+    // Insert the reservation into the database
+    connection.query(
+      'INSERT INTO Car_Rental_System.Reservation (pick_up_date, return_date, plate_id, customer_id, office_id, price) VALUES (?, ?, ?, ?, ?, ?)', 
+      [pick_up_date_date, return_date_date, plate_id, customer_id, office_id_int, price],
+      (err, results) => {
+        if (err) {
+          console.error('Error during reservation:', err);
+          return res.status(500).json({ message: 'Server error' });
+        }
+    
+        console.log('Reservation successful');
+        return res.status(200).json({ message: 'Reservation successful' });
+      }
+    );
+  });
+});
+
 
 // Route to handle viewing Cars
 app.get('/api/view-cars', (req, res) => {
