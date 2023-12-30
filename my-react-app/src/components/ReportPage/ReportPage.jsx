@@ -3,10 +3,10 @@ import Header_reports from "../Header_reports/Header_reports";
 
 const ReportsPage = (props) => {
     const [reportType, setReportType] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [carPlateID, setCarPlateID] = useState('');
-    const [CarDay, setCarDay] = useState('');
+    const [start_date, setStartDate] = useState('');
+    const [end_date, setEndDate] = useState('');
+    const [plate_id, setCarPlateID] = useState('');
+    const [day, setCarDay] = useState('');
     const [username, setUsername] = useState('');
 
     const handleReportTypeChange = (event) => {
@@ -24,12 +24,55 @@ const ReportsPage = (props) => {
         // Perform actions based on the selected report type and form data
         // For example, send an API request to fetch the selected report
         console.log('Report Type:', reportType);
-        console.log('Start Date:', startDate);
-        console.log('End Date:', endDate);
-        console.log('Car Plate ID:', carPlateID);
-        console.log('Car Day:', CarDay);
+        console.log('Start Date:', start_date);
+        console.log('End Date:', end_date);
+        console.log('Car Plate ID:', plate_id);
+        console.log('Car Day:', day);
         console.log('Username:', username);
     };
+
+    const handleReservationPeriod = async (e) => {
+        e.preventDefault(); // prevents the page from refreshing
+        try {
+            const response = await fetch('http://localhost:8000/api/reservation-reports', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ start_date, end_date }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('handleReservationPeriod successful:', data); 
+                
+           }
+        }
+        catch (error) {
+            console.error('Error during handleReservationPeriod:', error);
+            setError('Hello Server error');
+        }
+    }
+
+    const handleButton = async (e) => {
+        e.preventDefault(); // prevents the page from refreshing
+        if (reportType === 'reservationPeriod') {
+            handleReservationPeriod(e);
+        }
+        /*else if (reportType === 'reservationCarPeriod') {
+            handleReservationCarPeriod(e);
+        }
+        else if (reportType === 'CarDay'){
+            handleCarDay(e);
+        }
+        else if (reportType === 'reservationCustomer'){
+            handleReservationCustomer(e);
+        }
+        else if (reportType === 'payments'){
+            handlePayments(e);
+        }*/
+    }
+    
 
     return (
         <div >
@@ -53,38 +96,38 @@ const ReportsPage = (props) => {
                             <label className="reports-label">Start Date:</label>
                             <input
                                 type="date"
-                                value={startDate}
+                                value={start_date}
                                 onChange={(e) => setStartDate(e.target.value)}
                             />
                             <label className="reports-label">End Date:</label>
                             <input
                                 type="date"
-                                value={endDate}
+                                value={end_date}
                                 onChange={(e) => setEndDate(e.target.value)}
                             />
-                            <button className="reportbutton" type="submit">Generate Report</button>
+                            <button onClick={handleButton} className="reportbutton" type="submit">Generate Report</button>
                         </form>
                     )}
                     {reportType === 'reservationCarPeriod' && (
                         <form className="report-subform" onSubmit={handleSubmit}>
                             <label className="reports-label">Car's Plate ID:</label>
                             <input
-                                value={carPlateID}
+                                value={plate_id}
                                 onChange={(e) => setCarPlateID(e.target.value)}
                             />
                             <label className="reports-label">Start Date:</label>
                             <input
                                 type="date"
-                                value={startDate}
+                                value={start_date}
                                 onChange={(e) => setStartDate(e.target.value)}
                             />
                             <label className="reports-label">End Date:</label>
                             <input
                                 type="date"
-                                value={endDate}
+                                value={end_date}
                                 onChange={(e) => setEndDate(e.target.value)}
                             />
-                            <button className="reportbutton" type="submit">Generate Report</button>
+                            <button onClick={handleButton} className="reportbutton" type="submit">Generate Report</button>
                         </form>
                     )}
                     {reportType === 'CarDay' && (
@@ -92,10 +135,10 @@ const ReportsPage = (props) => {
                             <label className="reports-label">Day</label>
                             <input
                                 type="date"
-                                value={CarDay}
+                                value={day}
                                 onChange={(e) => setCarDay(e.target.value)}
                             />
-                            <button className="reportbutton" type="submit">Generate Report</button>
+                            <button onClick={handleButton} className="reportbutton" type="submit">Generate Report</button>
                         </form>
                     )}
                     {reportType === 'reservationCustomer' && (
@@ -105,7 +148,7 @@ const ReportsPage = (props) => {
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                             />
-                            <button className="reportbutton" type="submit">Generate Report</button>
+                            <button onClick={handleButton} className="reportbutton" type="submit">Generate Report</button>
                         </form>
                     )}
                     {reportType === 'payments' && (
@@ -113,16 +156,16 @@ const ReportsPage = (props) => {
                             <label className="reports-label">Start Date:</label>
                             <input
                                 type="date"
-                                value={startDate}
+                                value={start_date}
                                 onChange={(e) => setStartDate(e.target.value)}
                             />
                             <label className="reports-label">End Date:</label>
                             <input
                                 type="date"
-                                value={endDate}
+                                value={end_date}
                                 onChange={(e) => setEndDate(e.target.value)}
                             />
-                            <button className="reportbutton" type="submit">Generate Report</button>
+                            <button onClick={handleButton} className="reportbutton" type="submit">Generate Report</button>
                         </form>
 
                     )}

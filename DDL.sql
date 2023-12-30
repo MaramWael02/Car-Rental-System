@@ -6,6 +6,7 @@ CREATE TABLE Car (
     model VARCHAR(50),
     brand VARCHAR(50),
     `year` INT,
+    price float,
     office_id INT
 );
 CREATE TABLE `Car_Status` (
@@ -41,12 +42,13 @@ create table customer(
     email varchar(50),
     car_license varchar(50)
 );
+use Car_Rental_System;
+CREATE TABLE admin (
+    username VARCHAR(50),
+    'password' VARCHAR(50),
+    PRIMARY KEY(username)
+);
 
-
-
-USE Car_Rental_System;
-ALTER TABLE Reservation
-ADD PRIMARY KEY (reservation_id);
 
 USE Car_Rental_System;
 
