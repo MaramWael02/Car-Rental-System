@@ -226,7 +226,7 @@ app.get('/api/reservation-reports', (req, res) => {
               console.error('Error during login:', err);
               return res.status(500).json({ message: 'Server error' });
           }
-          res.status(200).json(reservation_reports);
+         return res.status(200).json(reservation_reports);
       }
   );
 });
@@ -244,7 +244,7 @@ app.get('/api/payment-reports', (req, res) => {
               console.error('Error during login:', err);
               return res.status(500).json({ message: 'Server error' });
           }
-          res.status(200).json(payment_reports);
+          return res.status(200).json(payment_reports);
       }
   );
 });
@@ -263,7 +263,7 @@ app.get('/api/car-status-reports', (req, res) => {
               console.error('Error during login:', err);
               return res.status(500).json({ message: 'Server error' });
           }
-          res.status(200).json(car_status_reports);
+          return res.status(200).json(car_status_reports);
       }
   );
 });
@@ -282,7 +282,7 @@ app.get('/api/car-reservations-report', (req, res) => {
               console.error('Error during login:', err);
               return res.status(500).json({ message: 'Server error' });
           }
-          res.status(200).json(car_reservations);
+         return  res.status(200).json(car_reservations);
       }
   );
 });
