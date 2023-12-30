@@ -102,7 +102,37 @@ app.post('/api/adminlogin', (req, res) => {
 
   });
 });
+// Route to handle Car Reservations
+app.post('api/reserve', (req,res) => {
+  const {office_id, pick_up_date, return_date, plate_id, customer_id} = req.body;
+  console.log('Received POST request at api/reserve');
+  connection.query('Select * From Car_Rental_System.Car where plate_id = ?',
+  [plate_id], 
+  (err, results) =>{
+    if (err){
+      console.error('Error during retrieving Car data:', err);
+      return res.status(500).json({ message: 'Server error' });
+      
+    }
+    price = results.price;
+  }
+  );
+  console.log('Username', customer_id);
+  const office_id_int = parseInt(office_id);
+  connection.query('Insert into Car_Rental_System.Reserve (customer_id, plate_id, office_id, pick_up_date, return_date, price) values(?,?,?,?,?,?)',
+  [customer_id,plate_id,office_id_int,pick_up_date,return_date,price],
+  (err, results) => {
+    if (err) {
+      console.error('Error during login:', err);
+      return res.status(500).json({ message: 'Server error' });
+    }
 
+    console.log('');
+    return res.status(200).json({ message: 'Car Reserved Successfully' });
+
+  })
+}
+)
 // Route to handle User Registerations
 app.post('/api/register', (req, res) => {
   const { email, password, phoneNum, fname, lname, address, username, carLicense  } = req.body;
