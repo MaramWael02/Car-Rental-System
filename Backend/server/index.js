@@ -134,7 +134,17 @@ app.post('/api/reserve-car', (req, res) => {
   const pick_up_date_date = new Date(pick_up_date);
   const return_date_date = new Date(return_date);
   const office_id_int = parseInt(office_id);  
-
+  // Check if the car is available
+  connection.query('SELECT * FROM Car_Rental_System.Car_Status WHERE plate_id = ? AND start_date <= ? AND end_date >= ?',
+   [plate_id, pick_up_date_date, return_date_date], (err, results) => {
+    if (err) {
+      console.error('Error during car selection:', err);
+      return res.status(500).json({ message: 'Server error' });
+    }
+    if (results.status ==='Rented'){
+      return res.status(401).json({ message: 'Car is not available' });
+    }
+   });
   connection.query('SELECT * FROM Car_Rental_System.Car WHERE plate_id = ?', [plate_id], (err, results) => {
     if (err) {
       console.error('Error during car selection:', err);
@@ -158,7 +168,24 @@ app.post('/api/reserve-car', (req, res) => {
           console.error('Error during reservation:', err);
           return res.status(500).json({ message: 'Server error' });
         }
+        // Update the car status
+        connection.query('Update Car_Rental_System.Car_Status SET end_date = ? WHERE plate_id = ? AND status = "Available"',
+         [pick_up_date_date, plate_id], (err, results) => {
+          if (err) {
+            console.error('Error during updating car status:', err);
+            return res.status(500).json({ message: 'Server error' });
+          }
+         });
+        connection.query('Insert into Car_Rental_System.Car_Status (plate_id, start_date, end_date,status) values (?,?,?,?)',
+        [plate_id, pick_up_date_date, return_date_date,'Rented'], (err, results) => {
+          if (err) {
+            console.error('Error during updating car status:', err);
+            return res.status(500).json({ message: 'Server error' });
+          }
+         }
+        );
     
+
         console.log('Reservation successful');
         return res.status(200).json({ message: 'Reservation successful' });
       }
@@ -204,6 +231,17 @@ app.post('/api/add-car', (req, res) => {
         console.error('Error during login:', err);
         return res.status(500).json({ message: 'Server error' });
       }
+      const current_day = new Date();
+      console.log('current_day', current_day);
+      // Update the car status
+      connection.query('Insert into Car_Rental_System.Car_Status (plate_id, start_date, status) values (?,?,?)',
+      [plate_id,current_day , 'Available'], (err, results) => {
+        if (err) {
+          console.error('Error during updating car status:', err);
+          return res.status(500).json({ message: 'Server error' });
+        }
+        }
+      );
       console.log('Car Added Successfully');
     }
   );
@@ -212,7 +250,7 @@ app.post('/api/add-car', (req, res) => {
 
 //Reports
 
-// Route to handle sending reservation reports
+// Route to handle sending reservation reports Report 1
 
 app.get('/api/reservation-reports', (req, res) => {
   const {start_date, end_date} = req.body;
@@ -231,25 +269,27 @@ app.get('/api/reservation-reports', (req, res) => {
   );
 });
 
-// Route to handle sending daily payment reports  
-app.get('/api/payment-reports', (req, res) => {
-  const {day} = req.body;
-  console.log('Received GET request at /api/payment-reports');
+// Route to handle sending all reservations of any car during specific time period Report 2
+
+app.get('/api/car-reservations-report', (req, res) => {
+  console.log('Received GET request at /api/car-reservations-report');
   // Get all payments made on a certain day
+  const {plate_id, start_date, end_date} = req.body;
+  const start_date_date = new Date(start_date);
+  const end_date_date = new Date(end_date);
   connection.query(
-      'select sum(price), pick_up_date from Car_Rental_System.Reservation having pick_up_date = ?', /// Needs to be adjusted
-      [day],
-      (err, payment_reports) => {
+      'select * from Car_Rental_System.Reservation Natural Join Car_Rental_System.Car where plate_id = ? and reservation_date >= ? and reservation_date <= ?',
+      [plate_id, start_date_date, end_date_date],
+      (err, car_reservations) => {
           if (err) {
               console.error('Error during login:', err);
               return res.status(500).json({ message: 'Server error' });
           }
-          return res.status(200).json(payment_reports);
+         return  res.status(200).json(car_reservations);
       }
   );
 });
-
-// Route to handle sending status of a car report 
+// Route to handle sending status of a car report Report 3
 
 app.get('/api/car-status-reports', (req, res) => { 
   console.log('Received GET request at /api/car-status-reports');
@@ -267,25 +307,44 @@ app.get('/api/car-status-reports', (req, res) => {
       }
   );
 });
-
-// Route to handle sending all reservations of any car
-
-app.get('/api/car-reservations-report', (req, res) => {
-  console.log('Received GET request at /api/car-reservations-report');
+// Route to handle reservation reports for a specific customer Report 4
+app.get('/api/customer-reservations-report', (req, res) => {
+  console.log('Received GET request at /api/customer-reservations-report');
   // Get all payments made on a certain day
-  const {plate_id} = req.body;
+  const {customer_id} = req.body;
   connection.query(
-      'select * from Car_Rental_System.Reservation where plate_id = ?',
-      [plate_id],
-      (err, car_reservations) => {
+      'select * from Car_Rental_System.Reservation where customer_id = ?',
+      [customer_id],
+      (err, customer_reservations) => {
           if (err) {
               console.error('Error during login:', err);
               return res.status(500).json({ message: 'Server error' });
           }
-         return  res.status(200).json(car_reservations);
+          return res.status(200).json(customer_reservations);
+      }
+  );
+}); 
+// Route to handle sending daily payment within a specific period reports Report 5  
+app.get('/api/payment-reports', (req, res) => {
+  const {start_date, end_date} = req.body;
+  const start_date_date = new Date(start_date);
+  const end_date_date = new Date(end_date);
+  console.log('Received GET request at /api/payment-reports');
+  // Get all payments made on a certain day
+  connection.query(
+      'select sum(price), pick_up_date from Car_Rental_System.Reservation having reservation_date >= ? and reservation_date <= ?', /// Needs to be adjusted
+      [start_date_date, end_date_date],
+      (err, payment_reports) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          return res.status(200).json(payment_reports);
       }
   );
 });
+
+
 
 // Start the server
 const PORT = 8000;
