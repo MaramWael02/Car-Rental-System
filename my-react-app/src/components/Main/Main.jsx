@@ -121,7 +121,7 @@ const handleInput = async (e) =>{
                                                     </div>
                                                     
                                                     <div>
-                                                        <button type="submit" onClick={handleInput}>Login</button>
+                                                        <button className='reservation-button' type="submit" onClick={handleInput}>Rent A Car Now</button>
                                                         {error && <p className="error-message">{error}</p>}
                                                     </div>
                                                 </form>

@@ -114,6 +114,13 @@ label{
   width: 120px;
 
 }
+.reservation-button{
+  background-color: rgb(119,212,142);
+  font-weight:normal;
+  font-size: 0.9rem;
+  color: white;
+  border-radius: 0rem;
+}
 button{
   display: flex;
   justify-content: center;
