@@ -135,59 +135,67 @@ app.post('/api/reserve-car', (req, res) => {
   const return_date_date = new Date(return_date);
   const office_id_int = parseInt(office_id);  
   // Check if the car is available
-  connection.query('SELECT * FROM Car_Rental_System.Car_Status WHERE plate_id = ? AND start_date <= ? AND end_date >= ?',
+  connection.query('SELECT * FROM Car_Rental_System.Car_Status WHERE plate_id = ? AND ( ? between start_date and end_date or ? between start_date and end_date)',
    [plate_id, pick_up_date_date, return_date_date], (err, results) => {
     if (err) {
       console.error('Error during car selection:', err);
       return res.status(500).json({ message: 'Server error' });
     }
-    if (results.status ==='Rented'){
+    console.log('car status', results[0].status);
+    if (results[0].status ==='Rented'){
       return res.status(401).json({ message: 'Car is not available' });
     }
-   });
-  connection.query('SELECT * FROM Car_Rental_System.Car WHERE plate_id = ?', [plate_id], (err, results) => {
-    if (err) {
-      console.error('Error during car selection:', err);
-      return res.status(500).json({ message: 'Server error' });
-    }
-
-    if (results.length === 0) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
-    const car = results[0];
-    const price = car.price;
-    console.log('price', price);
-
-    // Insert the reservation into the database
-    connection.query(
-      'INSERT INTO Car_Rental_System.Reservation (pick_up_date, return_date, plate_id, customer_id, office_id, price) VALUES (?, ?, ?, ?, ?, ?)', 
-      [pick_up_date_date, return_date_date, plate_id, customer_id, office_id_int, price],
-      (err, results) => {
-        if (err) {
-          console.error('Error during reservation:', err);
-          return res.status(500).json({ message: 'Server error' });
-        }
-        // Update the car status
-        connection.query('Update Car_Rental_System.Car_Status SET end_date = ? WHERE plate_id = ? AND status = "Available"',
-         [pick_up_date_date, plate_id], (err, results) => {
+    connection.query('SELECT * FROM Car_Rental_System.Car WHERE plate_id = ?', [plate_id], (err, results) => {
+      if (err) {
+        console.error('Error during car selection:', err);
+        return res.status(500).json({ message: 'Server error' });
+      }
+      
+      if (results.length === 0) {
+        return res.status(401).json({ message: "This Car doesn't exist, please check the car info" });
+      }
+      
+      const car = results[0];
+      const price = car.price;
+      console.log('price', price);
+      
+      // Insert the reservation into the database
+      connection.query(
+        'INSERT INTO Car_Rental_System.Reservation (pick_up_date, return_date, plate_id, customer_id, office_id, price) VALUES (?, ?, ?, ?, ?, ?)', 
+        [pick_up_date_date, return_date_date, plate_id, customer_id, office_id_int, price],
+        (err, results) => {
           if (err) {
-            console.error('Error during updating car status:', err);
+            console.error('Error during reservation:', err);
+            if (err.code === 'ER_NO_REFERENCED_ROW_2') {
+              return res.status(400).json({ message: 'Invalid, please check the office id or username' });
+            }
             return res.status(500).json({ message: 'Server error' });
           }
-         });
+          // Update the car status
+          connection.query('Update Car_Rental_System.Car_Status SET end_date = ? WHERE plate_id = ? AND status = "Available"',
+          [pick_up_date_date, plate_id], (err, results) => {
+            if (err) {
+              console.error('Error during updating car status:', err);
+              return res.status(500).json({ message: 'Error during updating car status' });
+            }
+          });
+        });
         connection.query('Insert into Car_Rental_System.Car_Status (plate_id, start_date, end_date,status) values (?,?,?,?)',
         [plate_id, pick_up_date_date, return_date_date,'Rented'], (err, results) => {
           if (err) {
             console.error('Error during updating car status:', err);
-            return res.status(500).json({ message: 'Server error' });
+            return res.status(500).json({ message: 'Database error' });
           }
          }
         );
     
 
         console.log('Reservation successful');
-        return res.status(200).json({ message: 'Reservation successful' });
+        return res.status(200).json({
+          message: 'Car Reserved Successfully. Please head to office ' + office_id + ' on ' + pick_up_date + ' to receive your car.',
+          office: office_id,
+          pick_up_date: pick_up_date
+      });
       }
     );
   });

@@ -21,16 +21,17 @@ const handleInput = async (e) =>{
 
             if (response.ok) {
                 const data = await response.json();
+                alert(data.message);
                 console.log('reservtion successful:', data); 
                 // Handle successful login (e.g., redirect to dashboard)
             }
             else {
                 const errorData = await response.json();
-                setError(errorData.message || 'reservation failed');
+                alert(errorData.message || 'reservation failed');
             }
         } catch (error) {
             console.error('Error during reservation:', error);
-            setError('Hello Server error');
+            alert('backend server not connected');
         }
     };
 
