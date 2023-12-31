@@ -124,7 +124,7 @@ const ReportsPage = (props) => {
     };
     const handleReservationCustomer = async () => {
         try {
-            const url = `http://localhost:8000/api/customer-reservations-report?username=${customer_id}`;
+            const url = `http://localhost:8000/api/customer-reservations-report?customer_id=${customer_id}`;
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
