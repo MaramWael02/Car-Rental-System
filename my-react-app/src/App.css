@@ -167,16 +167,15 @@ label{
   font-size: 0.8rem;
   text-align: left;
   position: relative;
-  top: 1.5rem;
-  right: 4.1rem;
+  top: 0.3rem;
   color: rgb(172, 170, 170);
   width: fit-content;
 }
 .plate-labels{
   font-size: 0.8rem;
   position:relative;
-  top: 1.5rem;
-  right: 5rem;
+  top: 1.3rem;
+  right: 4.3rem;
   width: fit-content;
   color: rgb(180, 178, 178);
 
