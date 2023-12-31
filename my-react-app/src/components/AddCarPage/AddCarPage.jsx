@@ -9,6 +9,7 @@ export const ADDCAR = (props) => {
     const [price, setPrice] = useState('');
     const [brand, setBrand] = useState('');
     const [image, setImage] = useState('');
+    const [start_date, setStartdate] = useState('');
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
@@ -20,16 +21,17 @@ export const ADDCAR = (props) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ plate_id, model, brand, year, office_id, price, image}),
+                body: JSON.stringify({ plate_id, model, brand, year, office_id, price, image, start_date}),
             });
 
             if (response.ok) {
                 const data = await response.json();
+                alert("Car Added Successfully");
                 console.log('Successful Registeration', data);
                 // Handle successful login (e.g., redirect to dashboard)
             } else {
                 const errorData = await response.json();
-                setError(errorData.message || 'Login failed');
+                alert(errorData.message || 'Login failed');
             }
         } catch (error) {
             console.error('Error during login:', error);
@@ -71,6 +73,14 @@ export const ADDCAR = (props) => {
                 onChange={(e) => setYear(e.target.value)} 
                 placeholder="Enter Car's Year" 
                 id="year" name="year" 
+            />
+            <label htmlFor="start_date">Service Start Date</label>
+            <input
+                value={start_date}
+                type="date"
+                onChange={(e) => setStartdate(e.target.value)} 
+                placeholder="Enter Car's Service Start Date" 
+                id="start_date" name="start_date"
             />
             <label htmlFor="office_id">Office ID</label>
                 <input 

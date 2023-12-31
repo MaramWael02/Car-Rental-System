@@ -66,7 +66,7 @@ app.post('/api/login', (req, res) => {
   );
   
 });
-// Route to handle login authentication 
+// Route to handle admin login authentication 
 app.post('/api/adminlogin', (req, res) => {
   const { username, password } = req.body;
   console.log('Received POST request at /api/adminlogin');
@@ -81,23 +81,12 @@ app.post('/api/adminlogin', (req, res) => {
         console.error('Error during login:', err);
         return res.status(500).json({ message: 'Server error' });
       }
-      console.log('results', results);
-      if (results.length === 0) {
+      console.log('results', results.length);
+      if (results.length === 0 || String(results[0].password) !== password) {
+        console.log('Invalid credentials');
         return res.status(401).json({ message: 'Invalid credentials' });
       }
-  
-      const user = results[0];
-      console.log('Retrieved user data:', user);
-  
-      // Assuming 'password' is the field name in the database
-      console.log('Database password:', user.password);
-      console.log('User-supplied password:', password);
-  
-      // Add password comparison logic here (considering encryption/hashing)
-     // Assuming user.password.trim() removes any leading/trailing whitespace
-     if (results.length === 0 || String(results[0].password) !== password) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
+
     return res.status(200).json({ message: 'Admin Login successful' });
 
   });
@@ -134,15 +123,16 @@ app.post('/api/reserve-car', (req, res) => {
   const pick_up_date_date = new Date(pick_up_date);
   const return_date_date = new Date(return_date);
   const office_id_int = parseInt(office_id);  
+  console.log('pick_up_date_date, return_date_date, office_id_int', pick_up_date_date, return_date_date, office_id_int);
   // Check if the car is available
-  connection.query('SELECT * FROM Car_Rental_System.Car_Status WHERE plate_id = ? AND ( ? between start_date and end_date or ? between start_date and end_date)',
-   [plate_id, pick_up_date_date, return_date_date], (err, results) => {
+  connection.query('SELECT * FROM Car_Rental_System.Car_Status WHERE plate_id = ? AND status ="Rented" And (? between start_date and end_date) or (? between start_date and end_date)',
+   [plate_id,pick_up_date_date,return_date_date ], (err, results) => {
+    console.log('results', results);
     if (err) {
       console.error('Error during car selection:', err);
       return res.status(500).json({ message: 'Server error' });
     }
-    console.log('car status', results[0].status);
-    if (results[0].status ==='Rented'){
+    if (results.length !== 0){
       return res.status(401).json({ message: 'Car is not available' });
     }
     connection.query('SELECT * FROM Car_Rental_System.Car WHERE plate_id = ?', [plate_id], (err, results) => {
@@ -188,8 +178,6 @@ app.post('/api/reserve-car', (req, res) => {
           }
          }
         );
-    
-
         console.log('Reservation successful');
         return res.status(200).json({
           message: 'Car Reserved Successfully. Please head to office ' + office_id + ' on ' + pick_up_date + ' to receive your car.',
@@ -225,13 +213,14 @@ app.get('/api/view-cars', (req, res) => {
 
 // Route to handle adding Cars
 app.post('/api/add-car', (req, res) => {
-  const { plate_id, model, brand, year, office_id, price , image} = req.body;
+  const { plate_id, model, brand, year, office_id, price , image, start_date} = req.body;
   console.log('Received POST request at /api/add-car');
   // Insert the reservation into the database
   console.log('plate_id, model, brand, year, office_id, price, image', plate_id, model, brand, year, office_id, price, image);
   const office_id_int = parseInt(office_id);
   const price_float = parseFloat(price);
   const year_int = parseInt(year);
+  const start_date_date = new Date(start_date);
   connection.query(
     'insert into Car_Rental_System.Car (plate_id, model, brand, year, office_id, price, image) values (?,?,?,?,?,?,?)', 
     [plate_id, model, brand, year_int, office_id_int, price_float, image],
@@ -240,11 +229,10 @@ app.post('/api/add-car', (req, res) => {
         console.error('Error during login:', err);
         return res.status(500).json({ message: 'Server error' });
       }
-      const current_day = new Date();
-      console.log('current_day', current_day);
+  
       // Update the car status
       connection.query('Insert into Car_Rental_System.Car_Status (plate_id, start_date, status) values (?,?,?)',
-      [plate_id,current_day , 'Available'], (err, results) => {
+      [plate_id,start_date_date , 'Available'], (err, results) => {
         if (err) {
           console.error('Error during updating car status:', err);
           return res.status(500).json({ message: 'Server error' });
@@ -308,14 +296,16 @@ app.get('/api/car-status-reports', (req, res) => {
   // Get all payments made on a certain day
   const {day} = req.query;
   const day_date = new Date(day);
+  console.log('day_date', day_date);
   connection.query(
-      'select plate_id , status from Car_Rental_System.Car_Status where start_date <= ? and end_date >= ?',
+      'select plate_id , status from Car_Rental_System.Car_Status where ? between start_date and end_date',
       [day_date, day_date],
       (err, car_status_reports) => {
           if (err) {
               console.error('Error during login:', err);
               return res.status(500).json({ message: 'Server error' });
           }
+          console.log('car_status_reports', car_status_reports);
           return res.status(200).json(car_status_reports);
       }
   );

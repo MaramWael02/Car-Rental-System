@@ -30,7 +30,7 @@ export const REGISTER = (props) => {
                 // Handle successful login (e.g., redirect to dashboard)
             } else {
                 const errorData = await response.json();
-                setError(errorData.message || 'Login failed');
+                alert(errorData.message || 'Login failed');
             }
         } catch (error) {
             console.error('Error during login:', error);

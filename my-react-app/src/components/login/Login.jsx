@@ -29,7 +29,7 @@ export const LOGIN = (props) => {
             }
             else {
                 const errorData = await response.json();
-                setError(errorData.message || 'Login failed');
+                alert(errorData.message || 'Login failed');
             }
         } catch (error) {
             console.error('Error during login:', error);
@@ -52,6 +52,10 @@ export const LOGIN = (props) => {
                 console.log('Admin Login successful:', data); 
                 props.onFormSwitch('AdminHomePage')
            }
+            else {
+                const errorData = await response.json();
+                alert(errorData.message || 'Login failed');
+            }
         }
         catch (error) {
             console.error('Error during login:', error);
