@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-export const CarList = () => {
+export const CarList = (props) => {
   const [cars, setCars] = useState([]);
+  const handleNavigation = (page) => {
+    props.onClick(page);
+  }
   useEffect(() => {
     fetch('http://localhost:8000/api/view-cars') // Your backend URL
       .then((response) => {
@@ -49,7 +52,7 @@ export const CarList = () => {
                         <p className="price ml-auto">${car.price} <span>/day</span></p>
                       </div>
                       <p className="d-flex mb-0 d-block">
-                        <a href="#" className="btn btn-primary py-2 mr-1">Book now</a>
+                        <a href="#" className="btn btn-primary py-2 mr-1" onClick={() => handleNavigation('HomePage')}>Book now</a>
                         <a href="#" className="btn btn-secondary py-2 ml-1">Details</a>
                       </p>
                     </div>
