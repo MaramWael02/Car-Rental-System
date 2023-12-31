@@ -81,6 +81,7 @@
   top: 11%;
   right: 15%;
   flex-direction: row;
+  border-collapse: collapse;
 }
 
 .background_image{
@@ -118,6 +119,30 @@
     margin: 0.5rem;
   }
   
+}
+.reports-table{
+  position: absolute;
+  color: white;
+  top: 30%;
+  left: 10%;
+  width: 80%;
+  min-height: 60%;
+  border-color: whitesmoke;
+  overflow: auto;
+  border-width: 2px;
+  border-style: solid; 
+  border-radius: 1rem;
+  background-color: rgb(23, 53, 92);
+  table-layout:auto;
+  opacity: 0.9;
+}
+
+.reports-table td{
+  vertical-align:top;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-collapse: collapse;
+  text-shadow: none;
 }
 
 input{

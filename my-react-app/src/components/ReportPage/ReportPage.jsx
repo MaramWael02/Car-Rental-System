@@ -11,17 +11,34 @@ const ReportsPage = (props) => {
     const [tableData, setTableData] = useState([]);
     const [error, setError] = useState('');
 
+
+    const getSelectedTable = () => {
+        switch(reportType) {
+            case 'reservationPeriod':
+                return <ReportTable1 data={tableData} />;
+            case 'reservationCarPeriod':
+                return <ReportTable2 data={tableData} />;
+            case 'CarDay':
+                return <ReportTable3 data={tableData} />;
+            case 'reservationCustomer':
+                return <ReportTable4 data={tableData} />;
+            case 'payments':
+                return <ReportTable5 data={tableData} />;
+            default:
+                return null;
+        }
+    };
+
     const ReportTable1 = ({ data }) => {
         return (
-          <table>
+          <table className="reports-table">
             <thead>
               <tr>
                 <th>Reservation ID</th>
                 <th>Customer's Username</th>
                 <th>Plate ID</th>
-                <th>Office ID</th>
+                <th>Car Brand</th>
                 <th>Reservation Date</th>
-                {/*ADD MORE COLUMNS AS NEEDEDDDD */}
               </tr>
             </thead>
             <tbody>
@@ -38,6 +55,108 @@ const ReportsPage = (props) => {
           </table>
         );
       };
+      const ReportTable2 = ({ data }) => {
+        return (
+          <table className="reports-table">
+            <thead>
+              <tr>
+                <th>Reservation ID</th>
+                <th>Reservation Date</th>
+                <th>Plate ID</th>
+                <th>Car Brand</th>
+                <th>Car Model</th>
+                <th>Car Year</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.reservation_id}</td>
+                  <td>{item.reservation_date}</td>
+                  <td>{item.plate_id}</td>
+                  <td>{item.brand}</td>
+                  <td>{item.model}</td>
+                  <td>{item.year}</td>
+                  <td>{item.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
+      };
+
+      const ReportTable3 = ({ data }) => {
+        return (
+          <table className="reports-table">
+            <thead>
+              <tr>
+                <th>Plate ID</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.plate_id}</td>
+                  <td>{item.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
+      };
+      const ReportTable4 = ({ data }) => {
+        return (
+          <table className="reports-table">
+            <thead>
+              <tr>
+              {/*  <th>First Name</th>
+                <th>Last Name</th>*/}
+                <th>Username</th>
+                <th>Plate ID</th>
+               {/* <th>Car Brand</th>
+                <th>Car Model</th> */}
+                <th>Reservation Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, index) => (
+                <tr key={index}>
+                  {/*<td>{item.first_name}</td>
+                  <td>{item.last_name}</td>*/}
+                  <td>{item.customer_id}</td>
+                  <td>{item.plate_id}</td>
+                  {/*<td>{item.brand}</td>
+                  <td>{item.model}</td>*/}
+                  <td>{item.reservation_date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
+      };
+
+      const ReportTable5 = ({ data }) => {
+        return (
+          <table className="reports-table">
+            <thead>
+              <tr>
+                <th>Reservation Date</th>
+               {/* <th>Total Payments</th>*/}
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.reservation_date}</td>
+                 {/* <td>{item.sum(price)}</td>*/}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
+      };
 
     const handleReportTypeChange = (event) => {
         setReportType(event.target.value);
@@ -47,18 +166,7 @@ const ReportsPage = (props) => {
         setCarPlateID('');
         setCarDay('');
         setUsername('');
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Perform actions based on the selected report type and form data
-        // For example, send an API request to fetch the selected report
-        console.log('Report Type:', reportType);
-        console.log('Start Date:', start_date);
-        console.log('End Date:', end_date);
-        console.log('Car Plate ID:', plate_id);
-        console.log('Car Day:', day);
-        console.log('Username:', customer_id);
+        setTableData([]);
     };
 
     const handleReservationPeriod = async () => {
@@ -188,7 +296,7 @@ const ReportsPage = (props) => {
             <Header_reports onClick={props.onFormSwitch}/>
             <img alt="background of a car" src="../images/bg_1.jpg" className="background_image" />
             <div>
-                <form className="reports-form" onSubmit={handleButton}>
+                <form className="reports-form" >
                     <h1 className="reports-header">Select Report Type</h1>
                     <select className="select-menu" value={reportType} onChange={handleReportTypeChange}>
                         <option value="">Select...</option>
@@ -197,7 +305,6 @@ const ReportsPage = (props) => {
                         <option value="CarDay">Status of a Car in a Day</option>
                         <option value="reservationCustomer">Customer Reservations</option>
                         <option value="payments">Daily Payments in a Period</option>
-                        {/* Add more options for different report types */}
                     </select>
 
                     {reportType === 'reservationPeriod' && (
@@ -273,8 +380,8 @@ const ReportsPage = (props) => {
                         </div>
                     )}
 
-                    <button className="reportbutton" type="submit">Generate Report</button>
-                {tableData.length > 0 && <ReportTable1 data={tableData} />}
+                    <button className="reportbutton" onClick={handleButton} type="submit">Generate Report</button>
+                {getSelectedTable()}
                 </form>
             </div>
         </div>
