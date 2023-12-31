@@ -43,7 +43,7 @@ export const CarList = (props) => {
               {cars.map((car, index) => (
                 <div key={index} className="col-md-4">
                   <div className="car-wrap rounded ftco-animate">
-                    <div className="img rounded d-flex align-items-end" style={{ backgroundImage: `url(${car.image})` }}>
+                    <div className="img rounded d-flex align-items-end" style={{ backgroundImage: `url(${"images/"}${car.image})`, zIndex:1}}>
                     </div>
                     <div className="text">
                       <h2 className="mb-0"><a href="#">{car.name}</a></h2>

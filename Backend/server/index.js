@@ -217,15 +217,16 @@ app.get('/api/view-cars', (req, res) => {
 
 // Route to handle adding Cars
 app.post('/api/add-car', (req, res) => {
-  const { plate_id, model, brand, year, office_id, price } = req.body;
+  const { plate_id, model, brand, year, office_id, price , image} = req.body;
   console.log('Received POST request at /api/add-car');
   // Insert the reservation into the database
+  console.log('plate_id, model, brand, year, office_id, price, image', plate_id, model, brand, year, office_id, price, image);
   const office_id_int = parseInt(office_id);
   const price_float = parseFloat(price);
   const year_int = parseInt(year);
   connection.query(
-    'insert into Car_Rental_System.Car (plate_id, model, brand, year, office_id, price) values (?,?,?,?,?,?)', 
-    [plate_id, model, brand, year_int, office_id_int, price_float],
+    'insert into Car_Rental_System.Car (plate_id, model, brand, year, office_id, price, image) values (?,?,?,?,?,?,?)', 
+    [plate_id, model, brand, year_int, office_id_int, price_float, image],
     (err, results) => {
       if (err) {
         console.error('Error during login:', err);

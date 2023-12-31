@@ -8,6 +8,7 @@ export const ADDCAR = (props) => {
     const [office_id, setOfficeid] = useState('');
     const [price, setPrice] = useState('');
     const [brand, setBrand] = useState('');
+    const [image, setImage] = useState('');
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
@@ -19,7 +20,7 @@ export const ADDCAR = (props) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ plate_id, model, brand, year, office_id, price}),
+                body: JSON.stringify({ plate_id, model, brand, year, office_id, price, image}),
             });
 
             if (response.ok) {
@@ -86,6 +87,17 @@ export const ADDCAR = (props) => {
                 type="number"
                 placeholder="600"
                 id="price" name="price" 
+            />
+            <label htmlFor="image">Image</label>
+            <input
+                type="file"
+                id="image"
+                name="image"
+                onChange={(e) => {
+                    const file = e.target.files[0].name;
+                    setImage(file);
+                }}
+                accept="image/png, image/jpeg" 
             />
             <button type="submit" onClick={handleSubmit}>Add Car</button>
             {error && <p className="error-message">{error}</p>}
