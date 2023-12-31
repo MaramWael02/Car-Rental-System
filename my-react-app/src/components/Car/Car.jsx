@@ -48,12 +48,13 @@ export const CarList = (props) => {
                     <div className="text">
                       <h2 className="mb-0"><a href="#">{car.name}</a></h2>
                       <div className="d-flex mb-3">
-                        <span className="cat">{car.brand}</span>
-                        <p className="price ml-auto">${car.price} <span>/day</span></p>
+                        <span className="cat color-change">{car.brand}~{car.model}</span>
+                        <span className="cars-labels">Office ID:{car.office_id}</span>
+                        <span className="plate-labels">Plate ID:{car.plate_id}</span>
+                        <p className="price ml-auto">${car.price}<span>/day</span></p>
                       </div>
                       <p className="d-flex mb-0 d-block">
-                        <a href="#" className="btn btn-primary py-2 mr-1" onClick={() => handleNavigation('HomePage')}>Book now</a>
-                        <a href="#" className="btn btn-secondary py-2 ml-1">Details</a>
+                        <a href="#" className="btn btn-primary py-2 mr-1 bookNowBTN" onClick={() => handleNavigation('HomePage')}>Book now</a>
                       </p>
                     </div>
                   </div>

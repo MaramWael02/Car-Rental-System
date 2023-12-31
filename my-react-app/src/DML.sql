@@ -85,7 +85,7 @@ INSERT INTO Car (plate_id,model, brand, 'year', price, office_id) VALUES
     ('KLM789', 1, 'Jeep', 'Camry', 2007, 'Red', 100, 'Available'),
     ('NOP012', 1, 'Mercedes Benz', 'Corolla', 2006, 'Blue', 105, 'Available'),
     ('PQR345', 1, 'Audi', 'Civic', 2005, 'Silver', 110, 'Available'),
-     ('NOP012', 1, 'Mercedes Benz', 'Corolla', 2006, 'Blue', 105, 'Available'),
+    ('NOP012', 1, 'Mercedes Benz', 'Corolla', 2006, 'Blue', 105, 'Available'),
     ('PQR345', 1, 'Audi', 'Civic', 2005, 'Silver', 110, 'Available'),
     ('STU678', 1, 'Audi', 'Accord', 2004, 'White', 115, 'Available'),
     ('VWX901', 1, 'Buggati', 'Camry', 2003, 'Black', 120, 'Available'),
