@@ -277,7 +277,7 @@ app.get('/api/reservation-reports', (req, res) => {
 app.get('/api/car-reservations-report', (req, res) => {
   console.log('Received GET request at /api/car-reservations-report');
   // Get all payments made on a certain day
-  const {plate_id, start_date, end_date} = req.body;
+  const {plate_id, start_date, end_date} = req.query;
   const start_date_date = new Date(start_date);
   const end_date_date = new Date(end_date);
   connection.query(
@@ -297,10 +297,11 @@ app.get('/api/car-reservations-report', (req, res) => {
 app.get('/api/car-status-reports', (req, res) => { 
   console.log('Received GET request at /api/car-status-reports');
   // Get all payments made on a certain day
-  const {day} = req.body;
+  const {day} = req.query;
+  const day_date = new Date(day);
   connection.query(
       'select plate_id , status from Car_Rental_System.Car_Status where start_date <= ? and end_date >= ?',
-      [day, day],
+      [day_date, day_date],
       (err, car_status_reports) => {
           if (err) {
               console.error('Error during login:', err);
@@ -314,7 +315,7 @@ app.get('/api/car-status-reports', (req, res) => {
 app.get('/api/customer-reservations-report', (req, res) => {
   console.log('Received GET request at /api/customer-reservations-report');
   // Get all payments made on a certain day
-  const {customer_id} = req.body;
+  const {customer_id} = req.query;
   connection.query(
       'select * from Car_Rental_System.Reservation where customer_id = ?',
       [customer_id],
@@ -329,7 +330,7 @@ app.get('/api/customer-reservations-report', (req, res) => {
 }); 
 // Route to handle sending daily payment within a specific period reports Report 5  
 app.get('/api/payment-reports', (req, res) => {
-  const {start_date, end_date} = req.body;
+  const {start_date, end_date} = req.query;
   const start_date_date = new Date(start_date);
   const end_date_date = new Date(end_date);
   console.log('Received GET request at /api/payment-reports');
