@@ -143,14 +143,14 @@ const ReportsPage = (props) => {
             <thead>
               <tr>
                 <th>Reservation Date</th>
-               {/* <th>Total Payments</th>*/}
+               { <th>Total Payments</th>}
               </tr>
             </thead>
             <tbody>
               {data.map((item, index) => (
                 <tr key={index}>
                   <td>{item.reservation_date}</td>
-                 {/* <td>{item.sum(price)}</td>*/}
+                 { <td>{item.total}</td>}
                 </tr>
               ))}
             </tbody>
