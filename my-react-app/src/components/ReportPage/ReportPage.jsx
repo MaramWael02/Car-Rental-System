@@ -7,7 +7,7 @@ const ReportsPage = (props) => {
     const [end_date, setEndDate] = useState('');
     const [plate_id, setCarPlateID] = useState('');
     const [day, setCarDay] = useState('');
-    const [username, setUsername] = useState('');
+    const [customer_id, setUsername] = useState('');
     const [tableData, setTableData] = useState([]);
     const [error, setError] = useState('');
 
@@ -58,7 +58,7 @@ const ReportsPage = (props) => {
         console.log('End Date:', end_date);
         console.log('Car Plate ID:', plate_id);
         console.log('Car Day:', day);
-        console.log('Username:', username);
+        console.log('Username:', customer_id);
     };
 
     const handleReservationPeriod = async () => {
@@ -81,15 +81,94 @@ const ReportsPage = (props) => {
           setError('Server error');
         }
       };
-      
+    const handleReservationCarPeriod = async () => {
+        try {
+            const url = `http://localhost:8000/api/car-reservations-report?start_date=${start_date}&end_date=${end_date}&plate_id=${plate_id}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            
+            if (response.ok) {
+            alert('In Response ok');
+            const data = await response.json();
+            setTableData(data);
+            console.log('handleReservationCarPeriod successful:', data);
+          }
+        } catch (error) {
+          console.error('Error during handleReservationCarPeriod:', error);
+          setError('Server error');
+        }
+    };
+    const handleCarDay = async () => {
+        try {
+            const url = `http://localhost:8000/api/car-status-reports?day=${day}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    },
+                });
 
+            if (response.ok) {
+                const data = await response.json();
+                setTableData(data); 
+                console.log('handleCarDay successful:', data);
+            }
+        } catch (error) {
+            console.error('Error during handleCarDay:', error);
+            setError('Server error');
+        }
+    };
+    const handleReservationCustomer = async () => {
+        try {
+            const url = `http://localhost:8000/api/customer-reservations-report?username=${customer_id}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    },
+                });
+
+            if (response.ok) {
+                const data = await response.json();
+                setTableData(data); 
+                console.log('handleReservationCustomer successful:', data);
+            }
+        } catch (error) {
+            console.error('Error during handleReservationCustomer:', error);
+            setError('Server error');
+        }
+    };
+    const handlePayments = async () => {
+        try {
+            const url = `http://localhost:8000/api/payment-reports?start_date=${start_date}&end_date=${end_date}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    },
+                });
+
+            if (response.ok) {
+                const data = await response.json();
+                setTableData(data); 
+                console.log('handlePayments successful:', data);
+            }
+        } catch (error) {
+            console.error('Error during handlePayments:', error);
+            setError('Server error');
+        }
+    };
     const handleButton = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
         if (reportType === 'reservationPeriod') {
             
             handleReservationPeriod(e);
         }
-        /*else if (reportType === 'reservationCarPeriod') {
+        else if (reportType === 'reservationCarPeriod') {
             handleReservationCarPeriod(e);
         }
         else if (reportType === 'CarDay'){
@@ -100,7 +179,7 @@ const ReportsPage = (props) => {
         }
         else if (reportType === 'payments'){
             handlePayments(e);
-        }*/
+        }
     }
     
 
@@ -172,7 +251,7 @@ const ReportsPage = (props) => {
                         <div className="report-subform">
                             <label className="reports-label">Customer's username</label>
                             <input
-                                value={username}
+                                value={customer_id}
                                 onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>

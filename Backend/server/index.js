@@ -316,6 +316,7 @@ app.get('/api/customer-reservations-report', (req, res) => {
   console.log('Received GET request at /api/customer-reservations-report');
   // Get all payments made on a certain day
   const {customer_id} = req.query;
+  console.log('customer_id', customer_id);
   connection.query(
       'select * from Car_Rental_System.Reservation where customer_id = ?',
       [customer_id],
@@ -324,6 +325,7 @@ app.get('/api/customer-reservations-report', (req, res) => {
               console.error('Error during login:', err);
               return res.status(500).json({ message: 'Server error' });
           }
+          console.log('customer_reservations', customer_reservations);
           return res.status(200).json(customer_reservations);
       }
   );
@@ -336,13 +338,14 @@ app.get('/api/payment-reports', (req, res) => {
   console.log('Received GET request at /api/payment-reports');
   // Get all payments made on a certain day
   connection.query(
-      'select sum(price), pick_up_date from Car_Rental_System.Reservation having reservation_date >= ? and reservation_date <= ?', /// Needs to be adjusted
+      'select sum(price), reservation_date from Car_Rental_System.Reservation group by reservation_date having reservation_date >= ? and reservation_date <= ?', /// Needs to be adjusted
       [start_date_date, end_date_date],
       (err, payment_reports) => {
           if (err) {
               console.error('Error during login:', err);
               return res.status(500).json({ message: 'Server error' });
           }
+          console.log('payment_reports', payment_reports);
           return res.status(200).json(payment_reports);
       }
   );
