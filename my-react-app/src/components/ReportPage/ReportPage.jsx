@@ -61,33 +61,32 @@ const ReportsPage = (props) => {
         console.log('Username:', username);
     };
 
-    const handleReservationPeriod = async (e) => {
-        e.preventDefault(); // prevents the page from refreshing
+    const handleReservationPeriod = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/reservation-reports', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+          const url = `http://localhost:8000/api/reservation-reports?start_date=${start_date}&end_date=${end_date}`;
+          const response = await fetch(url, {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ start_date, end_date }),
             });
-
+            
             if (response.ok) {
-                const data = await response.json();
-                setTableData(data);
-                console.log('handleReservationPeriod successful:', data); 
-
-           }
+            const data = await response.json();
+            setTableData(data);
+            console.log('handleReservationPeriod successful:', data);
+          }
+        } catch (error) {
+          console.error('Error during handleReservationPeriod:', error);
+          setError('Server error');
         }
-        catch (error) {
-            console.error('Error during handleReservationPeriod:', error);
-            setError('Hello Server error');
-        }
-    }
+      };
+      
 
     const handleButton = async (e) => {
         e.preventDefault(); // prevents the page from refreshing
         if (reportType === 'reservationPeriod') {
+            
             handleReservationPeriod(e);
         }
         /*else if (reportType === 'reservationCarPeriod') {
@@ -110,7 +109,7 @@ const ReportsPage = (props) => {
             <Header_reports onClick={props.onFormSwitch}/>
             <img alt="background of a car" src="../images/bg_1.jpg" className="background_image" />
             <div>
-                <form className="reports-form">
+                <form className="reports-form" onSubmit={handleButton}>
                     <h1 className="reports-header">Select Report Type</h1>
                     <select className="select-menu" value={reportType} onChange={handleReportTypeChange}>
                         <option value="">Select...</option>
@@ -123,7 +122,7 @@ const ReportsPage = (props) => {
                     </select>
 
                     {reportType === 'reservationPeriod' && (
-                        <form className="report-subform" onSubmit={handleSubmit}>
+                        <div className="report-subform">
                             <label className="reports-label">Start Date:</label>
                             <input
                                 type="date"
@@ -136,11 +135,10 @@ const ReportsPage = (props) => {
                                 value={end_date}
                                 onChange={(e) => setEndDate(e.target.value)}
                             />
-                            <button onClick={handleButton} className="reportbutton" type="submit">Generate Report</button>
-                        </form>
+                        </div>
                     )}
                     {reportType === 'reservationCarPeriod' && (
-                        <form className="report-subform" onSubmit={handleSubmit}>
+                        <div className="report-subform">
                             <label className="reports-label">Car's Plate ID:</label>
                             <input
                                 value={plate_id}
@@ -158,32 +156,29 @@ const ReportsPage = (props) => {
                                 value={end_date}
                                 onChange={(e) => setEndDate(e.target.value)}
                             />
-                            <button onClick={handleButton} className="reportbutton" type="submit">Generate Report</button>
-                        </form>
+                        </div>
                     )}
                     {reportType === 'CarDay' && (
-                        <form className="report-subform" onSubmit={handleSubmit}>
+                        <div className="report-subform">
                             <label className="reports-label">Day</label>
                             <input
                                 type="date"
                                 value={day}
                                 onChange={(e) => setCarDay(e.target.value)}
                             />
-                            <button onClick={handleButton} className="reportbutton" type="submit">Generate Report</button>
-                        </form>
+                        </div>
                     )}
                     {reportType === 'reservationCustomer' && (
-                        <form className="report-subform" onSubmit={handleSubmit}>
+                        <div className="report-subform">
                             <label className="reports-label">Customer's username</label>
                             <input
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                             />
-                            <button onClick={handleButton} className="reportbutton" type="submit">Generate Report</button>
-                        </form>
+                        </div>
                     )}
                     {reportType === 'payments' && (
-                        <form className="report-subform" onSubmit={handleSubmit}>
+                        <div className="report-subform">
                             <label className="reports-label">Start Date:</label>
                             <input
                                 type="date"
@@ -196,15 +191,13 @@ const ReportsPage = (props) => {
                                 value={end_date}
                                 onChange={(e) => setEndDate(e.target.value)}
                             />
-                            <button onClick={handleButton} className="reportbutton" type="submit">Generate Report</button>
-                        </form>
-
+                        </div>
                     )}
 
-
+                    <button className="reportbutton" type="submit">Generate Report</button>
+                {tableData.length > 0 && <ReportTable1 data={tableData} />}
                 </form>
             </div>
-            {tableData.length && <ReportTable1 data={tableData} />}
         </div>
     );
 };

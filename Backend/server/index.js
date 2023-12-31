@@ -253,17 +253,20 @@ app.post('/api/add-car', (req, res) => {
 // Route to handle sending reservation reports Report 1
 
 app.get('/api/reservation-reports', (req, res) => {
-  const {start_date, end_date} = req.body;
+  const {start_date, end_date} = req.query;
   console.log('Received GET request at /api/reservation-reports');
   // Get reservation reports during a certain time period
+  const start_date_date = new Date(start_date);
+  const end_date_date = new Date(end_date);
   connection.query(
-      'select * from Car_Rental_System.Reservation Natural JOIN Car_Rental_System.customer where pick_up_date >= ? and return_date <= ?',
-      [start_date, end_date],
+      'select * from Car_Rental_System.Reservation Natural JOIN Car_Rental_System.customer where reservation_date >= ? and reservation_date <= ?',
+      [start_date_date, end_date_date],
       (err, reservation_reports) => {
           if (err) {
               console.error('Error during login:', err);
               return res.status(500).json({ message: 'Server error' });
           }
+          console.log('reservation_reports', reservation_reports);
          return res.status(200).json(reservation_reports);
       }
   );
