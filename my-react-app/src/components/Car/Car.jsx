@@ -48,7 +48,7 @@ export const CarList = (props) => {
                     <div className="text">
                       <h2 className="mb-0"><a href="#">{car.name}</a></h2>
                       <div className="d-flex mb-3">
-                        <span className="cat color-change">{car.brand}~{car.model}</span>
+                        <span className="cat ">{car.brand}~{car.model}</span>
                         <span className="cars-labels">Office ID:{car.office_id}</span>
                         <span className="plate-labels">Plate ID:{car.plate_id}</span>
                         <p className="price ml-auto">${car.price}<span>/day</span></p>
