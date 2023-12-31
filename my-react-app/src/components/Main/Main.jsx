@@ -162,7 +162,7 @@ const handleInput = async (e) =>{
                                 </div>
                             </div>
                         </section>
-                        <section className="ftco-counter ftco-section img bg-light" id="section-counter">
+                        {/*<section className="ftco-counter ftco-section img bg-light" id="section-counter">
                             <div className="overlay" />
                             <div className="container">
                                 <div className="row">
@@ -200,7 +200,7 @@ const handleInput = async (e) =>{
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section>*/}
                     </div>
 
                 </div>
