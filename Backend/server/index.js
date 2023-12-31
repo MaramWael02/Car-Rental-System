@@ -336,9 +336,11 @@ app.get('/api/payment-reports', (req, res) => {
   const start_date_date = new Date(start_date);
   const end_date_date = new Date(end_date);
   console.log('Received GET request at /api/payment-reports');
-  // Get all payments made on a certain day
+  console.log('start_date_date', start_date_date);  
+  console.log('end_date_date', end_date_date);
+  // Get all payments made in a specific period
   connection.query(
-      'select sum(price), reservation_date from Car_Rental_System.Reservation group by reservation_date having reservation_date >= ? and reservation_date <= ?', /// Needs to be adjusted
+      'select sum(price) as total, reservation_date from Car_Rental_System.Reservation where reservation_date between ? AND ? group by reservation_date', /// Needs to be adjusted
       [start_date_date, end_date_date],
       (err, payment_reports) => {
           if (err) {
