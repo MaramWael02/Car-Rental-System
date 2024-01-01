@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 export const CarList = (props) => {
   const [cars, setCars] = useState([]);
   const handleNavigation = (page) => {
-    props.onClick(page);
+    props.onClick(page, props.username);
   }
   useEffect(() => {
     fetch('http://localhost:8000/api/view-cars') // Your backend URL

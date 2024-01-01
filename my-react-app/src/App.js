@@ -11,9 +11,11 @@ import CarPage from './components/CarPage/CarPage';
 import SearchPage from './components/SearchPage/Search';
 function App() {
   const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
+  const[user, setUser] = useState('');
   
-  const toggleform = (formName) => {
+  const toggleform = (formName, userData) => {
     setCurrentForm(formName);
+    setUser(userData);
   };
 
   return (
@@ -32,9 +34,9 @@ function App() {
         : currentForm === 'Reports' ?
         (<ReportsPage onFormSwitch={toggleform}/>)
         : currentForm === 'view-cars' ?
-        (<CarPage onFormSwitch={toggleform}/>)
+        (<CarPage onFormSwitch={toggleform} username={user}/>)
         : currentForm === 'HomePage' ?
-        (<HomePage onFormSwitch={toggleform}/>)
+        (<HomePage onFormSwitch={toggleform} username={user}/>)
         :currentForm === 'SearchPage' ?
         (<SearchPage onFormSwitch={toggleform}/>)
         : null

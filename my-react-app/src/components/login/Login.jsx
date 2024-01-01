@@ -24,7 +24,7 @@ export const LOGIN = (props) => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Login successful:', data); 
-                props.onFormSwitch('HomePage')
+                props.onFormSwitch('HomePage', username);
                 // Handle successful login (e.g., redirect to dashboard)
             }
             else {

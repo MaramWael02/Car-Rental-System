@@ -200,7 +200,6 @@ const ReportsPage = (props) => {
             });
             
             if (response.ok) {
-            alert('In Response ok');
             const data = await response.json();
             setTableData(data);
             console.log('handleReservationCarPeriod successful:', data);

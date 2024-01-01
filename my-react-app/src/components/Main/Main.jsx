@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const Main = () => {
-const [customer_id, setUsername] = useState('');
+const Main = (props) => {
+const [customer_id, setUsername] = useState(props.username);
 const [office_id, setOfficeID] = useState('');
 const [pick_up_date, setPickUpdDate] = useState('');
 const [return_date, setReturnDate] = useState('');
@@ -64,7 +64,7 @@ const handleInput = async (e) =>{
                                             <div className="col-md-4 d-flex align-items-center">
                                                 <form action="#" className="request-form ftco-animate bg-primary">
                                                     <h2>Make your trip</h2>
-                                                    <div className="form-group">
+                                                    {/*<div className="form-group">
                                                         <label htmlFor className="label">Username</label>
                                                         <input 
                                                         type="text" 
@@ -74,7 +74,7 @@ const handleInput = async (e) =>{
                                                         onChange={(e) => setUsername(e.target.value)}
                                                         required
                                                         />
-                                                    </div>
+    </div>*/}
                                                     <div className="form-group">
                                                         <label htmlFor className="label">Pick-up location</label>
                                                         <input type="text" 

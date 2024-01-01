@@ -7,8 +7,8 @@ const HomePage=(props) =>{
 
     return (
         <div>
-            <Header onClick={props.onFormSwitch}/>
-            <Main />
+            <Header onClick={props.onFormSwitch} username={props.username} />
+            <Main username={props.username}/>
             <Footer />
         </div>
     );

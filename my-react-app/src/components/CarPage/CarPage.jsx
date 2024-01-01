@@ -6,7 +6,7 @@ import {CarList} from "../Car/Car";
 const CarPage=(props) =>{
     return(
         <div>
-            <Header onClick={props.onFormSwitch}/>
+            <Header onClick={props.onFormSwitch} username={props.username}/>
             <CarList onClick={props.onFormSwitch}/>
             <Footer />
         </div>
