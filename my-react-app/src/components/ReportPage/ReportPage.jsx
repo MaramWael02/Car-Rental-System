@@ -47,7 +47,7 @@ const ReportsPage = (props) => {
                   <td>{item.reservation_id}</td>
                   <td>{item.customer_id}</td>
                   <td>{item.plate_id}</td>
-                  <td>{item.office_id}</td>
+                  <td>{item.brand}</td>
                   <td>{item.reservation_date}</td>
                 </tr>
               ))}
@@ -93,6 +93,8 @@ const ReportsPage = (props) => {
               <tr>
                 <th>Plate ID</th>
                 <th>Status</th>
+                <th>Status Start Date</th>
+                <th>Status End Date</th>
               </tr>
             </thead>
             <tbody>
@@ -100,6 +102,8 @@ const ReportsPage = (props) => {
                 <tr key={index}>
                   <td>{item.plate_id}</td>
                   <td>{item.status}</td>
+                  <td>{item.start_date}</td>
+                  <td>{item.end_date}</td>
                 </tr>
               ))}
             </tbody>

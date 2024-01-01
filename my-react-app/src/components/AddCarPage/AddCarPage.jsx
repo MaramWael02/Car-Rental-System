@@ -26,6 +26,7 @@ export const ADDCAR = (props) => {
 
             if (response.ok) {
                 const data = await response.json();
+                alert(data.message);
                 alert("Car Added Successfully");
                 console.log('Successful Registeration', data);
                 // Handle successful login (e.g., redirect to dashboard)
