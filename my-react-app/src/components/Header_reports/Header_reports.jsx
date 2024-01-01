@@ -16,6 +16,9 @@ const Header_reports=(props) => {
         else if (page === 'login'){
             props.onClick('login');
         }
+        else if (page === 'Search'){
+            props.onClick('SearchPage');
+        }
 
       };
     return (
@@ -31,6 +34,7 @@ const Header_reports=(props) => {
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active"><a href='#' onClick={() => handleNavigation('AdminHomePage')} className="nav-link">Home</a></li>
                                 <li className="nav-item"><a href='#' onClick={() => handleNavigation('AddCarPage')} className="nav-link">Add Car</a></li>
+                                <li className="nav-item"><a href='#' onClick={() => handleNavigation('Search')} className="nav-link">Search</a></li>
                                 <li className="nav-item"><a href='#' onClick={() => handleNavigation('login')} className="nav-link">Sign out</a></li>
                             </ul>
                         </div>

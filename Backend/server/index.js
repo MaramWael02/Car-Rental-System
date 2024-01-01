@@ -353,8 +353,192 @@ app.get('/api/payment-reports', (req, res) => {
   );
 });
 
+///// Searching
 
+// Route to handle searching for car brand
+app.get('/api/car-brand', (req, res) => {
+  const {brand} = req.query;
+  console.log('Received GET request at /api/search-car-brand');
+  // Get all payments made on a certain day
+  connection.query(
+      'select * from Car_Rental_System.Car where brand = ?',
+      [brand],
+      (err, car_brand) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          console.log('car_brand', car_brand);
+          return res.status(200).json(car_brand);
+      }
+  );
+});
 
+// Route to handle searching for car model
+app.get('/api/car-model', (req, res) => {
+  const {model} = req.query;
+  console.log('Received GET request at /api/search-car-model');
+  // Get all payments made on a certain day
+  connection.query(
+      'select * from Car_Rental_System.Car where model = ?',
+      [model],
+      (err, car_model) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          console.log('car_model', car_model);
+          return res.status(200).json(car_model);
+      }
+  );
+});
+
+// Route to handle searching for car year
+app.get('/api/car-year', (req, res) => {
+  const {year} = req.query;
+  console.log('Received GET request at /api/search-car-year');
+  // Get all payments made on a certain day
+  connection.query(
+      'select * from Car_Rental_System.Car where year = ?',
+      [year],
+      (err, car_year) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          console.log('car_year', car_year);
+          return res.status(200).json(car_year);
+      }
+  );
+});
+
+// Route to handle searching for car price
+app.get('/api/car-price', (req, res) => {
+  const {price} = req.query;
+  console.log('Received GET request at /api/search-car-price');
+  // Get all payments made on a certain day
+  connection.query(
+      'select * from Car_Rental_System.Car where price = ?',
+      [price],
+      (err, car_price) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          console.log('car_price', car_price);
+          return res.status(200).json(car_price);
+      }
+  );
+});
+
+// Route to handle searching for car office
+app.get('/api/car-office', (req, res) => {
+  const {office_id} = req.query;
+  console.log('Received GET request at /api/search-car-office');
+  // Get all payments made on a certain day
+  connection.query(
+      'select * from Car_Rental_System.Car where office_id = ?',
+      [office_id],
+      (err, car_office) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          console.log('car_office', car_office);
+          return res.status(200).json(car_office);
+      }
+  );
+});
+
+// Route to handle searching for car plate id
+app.get('/api/car-plate', (req, res) => {
+  const {plate_id} = req.query;
+  console.log('Received GET request at /api/search-car-plate-id');
+  // Get all payments made on a certain day
+  connection.query(
+      'select * from Car_Rental_System.Car where plate_id = ?',
+      [plate_id],
+      (err, car_plate_id) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+          console.log('car_plate_id', car_plate_id);
+          return res.status(200).json(car_plate_id);
+      }
+  );
+});
+// Route to handle searching for customer id
+app.get('/api/customer-username', (req, res) => {
+  const {username} = req.query;
+  console.log('Received GET request at /api/search-customer-id');
+  // Get all payments made on a certain day
+  connection.query(
+      'select * from Car_Rental_System.customer where customer_id = ?',
+      [username],
+      (err, customer_id) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error' });
+          }
+         return res.status(200).json(customer_id);
+      }
+  );
+});
+// Route to handle searching for customer first name
+app.get('/api/customer-first-name', (req, res) => {
+  const {first_name} = req.query;
+  console.log('Received GET request at /api/search-customer-first-name');
+  // Get all payments made on a certain day
+  connection.query(
+      'select * from Car_Rental_System.customer where first_name = ?',
+      [first_name],
+      (err, customer_first_name) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error'});
+          }
+          console.log('customer_first_name', customer_first_name);
+          return res.status(200).json(customer_first_name);
+      }
+  );
+});
+// Route to handle searching for customer last name
+app.get('/api/customer-last-name', (req, res) => {
+  const {last_name} = req.query;
+  console.log('Received GET request at /api/search-customer-last-name');
+  // Get all payments made on a certain day
+  connection.query(
+      'select * from Car_Rental_System.customer where last_name = ?',
+      [last_name],
+      (err, customer_last_name) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error'});
+          }
+          console.log('customer_last_name', customer_last_name);
+          return res.status(200).json(customer_last_name);
+      }
+  );
+});
+// Route to handle searching for customer license
+app.get('/api/customer-license', (req, res) => {
+  const {license} = req.query;
+  console.log('Received GET request at /api/search-customer-license');
+  // Get all payments made on a certain day
+  connection.query(
+      'select * from Car_Rental_System.customer where car_license = ?',
+      [license],
+      (err, customer_license) => {
+          if (err) {
+              console.error('Error during login:', err);
+              return res.status(500).json({ message: 'Server error'});
+          }
+          console.log('customer_license', customer_license);
+          return res.status(200).json(customer_license);
+      }
+  );
+});
 // Start the server
 const PORT = 8000;
 app.listen(PORT, () => {

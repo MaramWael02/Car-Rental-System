@@ -11,6 +11,9 @@ const AdminHomePage = (props) => {
     } else if (buttonType === 'AddCar') {
         props.onFormSwitch('AddCarpage');
         }
+      else if (buttonType === 'SearchPage') {
+          props.onFormSwitch('SearchPage');
+          }
   };
 
   return (
@@ -22,6 +25,9 @@ const AdminHomePage = (props) => {
       </button>
       <button onClick={() => handleButtonClick('AddCar')}>
         Add Car
+      </button>
+      <button onClick={() => handleButtonClick('SearchPage')}>
+        Search
       </button>
       </form>
     </div>
