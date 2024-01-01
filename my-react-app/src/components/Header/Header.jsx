@@ -2,6 +2,7 @@ import React from 'react';
 
 const Header=(props) => {
     const handleNavigation = (page) => {
+        
         props.onClick(page, props.username);
       };
 
