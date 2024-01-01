@@ -82,8 +82,13 @@ add foreign key(customer_id) references customer(customer_id);
 alter table Reservation
 add foreign key(plate_id, office_id) references Car(plate_id, office_id);
 
-
-
+use Car_Rental_System;
+alter table Car_Status
+modify column end_date  datetime DEFAULT CURRENT_TIMESTAMP;
+Delete  from Car_Rental_System;
+truncate  table Reservation;
+truncate table Car_Status;
+truncate table Car;
 
 
 

@@ -148,7 +148,8 @@ app.post('/api/reserve-car', (req, res) => {
       const car = results[0];
       const price = car.price;
       console.log('price', price);
-      
+      /*const reservation_date = new Date(2023,10,30);*/
+      //console.log('reservation_date', reservation_date);
       // Insert the reservation into the database
       connection.query(
         'INSERT INTO Car_Rental_System.Reservation (pick_up_date, return_date, plate_id, customer_id, office_id, price) VALUES (?, ?, ?, ?, ?, ?)', 
@@ -217,7 +218,7 @@ app.post('/api/add-car', (req, res) => {
   const { plate_id, model, brand, year, office_id, price , image, start_date} = req.body;
   console.log('Received POST request at /api/add-car');
   // Insert the reservation into the database
-  console.log('plate_id, model, brand, year, office_id, price, image', plate_id, model, brand, year, office_id, price, image);
+  console.log('plate_id, model, brand, year, office_id, price, image, start_date', plate_id, model, brand, year, office_id, price, image, start_date);
   const office_id_int = parseInt(office_id);
   const price_float = parseFloat(price);
   const year_int = parseInt(year);
@@ -227,6 +228,9 @@ app.post('/api/add-car', (req, res) => {
     [plate_id, model, brand, year_int, office_id_int, price_float, image],
     (err, results) => {
       if (err) {
+        if (err.code === 'ER_DUP_ENTRY') {
+          return res.status(400).json({ message: 'Car already exists' });
+        }
         console.error('Error during login:', err);
         return res.status(500).json({ message: 'Server error' });
       }
@@ -241,6 +245,7 @@ app.post('/api/add-car', (req, res) => {
         }
       );
       console.log('Car Added Successfully');
+      return res.status(200).json({ message: 'Car Added Successfully' });
     }
   );
   
@@ -257,7 +262,7 @@ app.get('/api/reservation-reports', (req, res) => {
   const start_date_date = new Date(start_date);
   const end_date_date = new Date(end_date);
   connection.query(
-      'select * from Car_Rental_System.Reservation Natural JOIN Car_Rental_System.customer where reservation_date >= ? and reservation_date <= ?',
+      'select * from Car_Rental_System.Reservation Natural JOIN Car_Rental_System.customer Natural JOIN Car_Rental_System.Car where reservation_date >= ? and reservation_date <= ?',
       [start_date_date, end_date_date],
       (err, reservation_reports) => {
           if (err) {
@@ -299,8 +304,8 @@ app.get('/api/car-status-reports', (req, res) => {
   const day_date = new Date(day);
   console.log('day_date', day_date);
   connection.query(
-      'select plate_id , status from Car_Rental_System.Car_Status where ? between start_date and end_date',
-      [day_date, day_date],
+      'select * from Car_Rental_System.Car_Status where ? between start_date AND end_date',
+      [day_date],
       (err, car_status_reports) => {
           if (err) {
               console.error('Error during login:', err);
