@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
 const Main = (props) => {
-const [customer_id, setUsername] = useState(props.username);
-const [office_id, setOfficeID] = useState('');
-const [pick_up_date, setPickUpdDate] = useState('');
-const [return_date, setReturnDate] = useState('');
-const [plate_id, setPlateID] = useState('');
-const [cars, setCars] = useState([]);
-const [error, setError] = useState('');
-const handleInput = async (e) =>{
-    e.preventDefault();
-    try {
+    const [customer_id, setUsername] = useState(props.username);
+    const [office_id, setOfficeID] = useState('');
+    const [pick_up_date, setPickUpdDate] = useState('');
+    const [return_date, setReturnDate] = useState('');
+    const [plate_id, setPlateID] = useState('');
+    const [cars, setCars] = useState([]);
+    const [error, setError] = useState('');
+    const handleInput = async (e) => {
+        e.preventDefault();
+        try {
             const response = await fetch('http://localhost:8000/api/reserve-car', {
                 method: 'POST',
                 headers: {
@@ -22,7 +22,7 @@ const handleInput = async (e) =>{
             if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
-                console.log('reservtion successful:', data); 
+                console.log('reservtion successful:', data);
                 // Handle successful login (e.g., redirect to dashboard)
             }
             else {
@@ -43,12 +43,12 @@ const handleInput = async (e) =>{
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    },
-                });
+                },
+            });
 
             if (response.ok) {
                 const data = await response.json();
-                setCars(data); 
+                setCars(data);
                 console.log('handlePayments successful:', data);
             }
         } catch (error) {
@@ -84,7 +84,7 @@ const handleInput = async (e) =>{
                                             <div className="col-md-4 d-flex align-items-center">
                                                 <form action="#" className="request-form ftco-animate bg-primary">
                                                     <h2>Make your trip</h2>
-                        
+
                                                     <div className="form-group">
                                                         <label htmlFor className="label">Pick-up location</label>
                                                         <select
@@ -104,51 +104,51 @@ const handleInput = async (e) =>{
                                                             <option value="5">office 5</option>
                                                             <option value="6">office 6</option>
                                                         </select>
-                                                        
+
                                                     </div>
                                                     <div className="form-group">
                                                         <label htmlFor className="label">Car</label>
-                                                        <select type="text" 
-                                                        className="form-control" 
-                                                        placeholder="Car's plate ID" 
-                                                        value={plate_id}
-                                                        onChange={(e) => setPlateID(e.target.value)}
-                                                        required
+                                                        <select type="text"
+                                                            className="form-control"
+                                                            placeholder="Car's plate ID"
+                                                            value={plate_id}
+                                                            onChange={(e) => setPlateID(e.target.value)}
+                                                            required
                                                         >
                                                             <option value="">Select a car</option>
                                                             {cars.map((car, index) => (
                                                                 <option key={index} value={car.plate_id}>{car.brand} {car.model} {car.plate_id}</option>
-                                                            
+
                                                             ))}
                                                         </select>
-                                        
+
                                                     </div>
-                            
+
                                                     <div className="d-flex">
                                                         <div className="form-group mr-2">
                                                             <label htmlFor className="label">Pick-up date</label>
-                                                            <input type="date" 
-                                                            className="form-control" 
-                                                            id="book_pick_date" 
-                                                            placeholder="Date" 
-                                                            value={pick_up_date}
-                                                            onChange={(e) => setPickUpdDate(e.target.value)}
-                                                            required
+                                                            <input type="date"
+                                                                className="form-control"
+                                                                id="book_pick_date"
+                                                                placeholder="Date"
+                                                                value={pick_up_date}
+                                                                onChange={(e) => setPickUpdDate(e.target.value)}
+                                                                required
                                                             />
                                                         </div>
                                                         <div className="form-group ml-2">
                                                             <label htmlFor className="label">Drop-off date</label>
-                                                            <input type="date" 
-                                                            className="form-control" 
-                                                            id="book_off_date" 
-                                                            placeholder="Date" 
-                                                            value={return_date}
-                                                            onChange={(e) => setReturnDate(e.target.value)}
-                                                            required
+                                                            <input type="date"
+                                                                className="form-control"
+                                                                id="book_off_date"
+                                                                placeholder="Date"
+                                                                value={return_date}
+                                                                onChange={(e) => setReturnDate(e.target.value)}
+                                                                required
                                                             />
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div>
                                                         <button className='reservation-button' type="submit" onClick={handleInput}>Rent A Car Now</button>
                                                         {error && <p className="error-message">{error}</p>}
@@ -186,6 +186,27 @@ const handleInput = async (e) =>{
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section className="ftco-section ftco-about">
+                            <div className="container">
+                                <div className="row no-gutters">
+                                    <div className="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: 'url(images/about.jpg)' }}>
+                                    </div>
+                                    <div className="col-md-6 wrap-about ftco-animate">
+                                        <div className="heading-section heading-section-white pl-md-5">
+                                            <span className="subheading">About us</span>
+                                            <h2 className="mb-4">Welcome to Luxe Driver Rentals</h2>
+                                            <p>Drive Your Dreams: Unleash Luxury on Every Journey with LuxeDriver Rentals</p>
+                                            <p>At Luxe Driver Rentals, we understand that every journey is an opportunity to create lasting memories, and the vehicle you choose plays a pivotal role in shaping those moments. That's why we've curated a fleet of the most coveted luxury cars, ensuring that each drive with us is a statement of refined taste and opulence.
+
+                                                Our commitment to excellence goes beyond the vehicles we offer. We have meticulously designed our rental process to be seamless, from the moment you browse our collection to the instant you step into your chosen vehicle. Our user-friendly online platform allows you to explore our fleet, select your dream car, and secure your reservation with ease.
+
+                                                .</p>
+                                            <p><a href="#" className="btn btn-primary py-3 px-4">Search Vehicle</a></p>
                                         </div>
                                     </div>
                                 </div>

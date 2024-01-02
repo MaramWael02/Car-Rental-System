@@ -63,27 +63,7 @@ export const CarList = (props) => {
             </div>
           </div>
         </section>
-        <section className="ftco-section ftco-about">
-          <div className="container">
-            <div className="row no-gutters">
-              <div className="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: 'url(images/about.jpg)' }}>
-              </div>
-              <div className="col-md-6 wrap-about ftco-animate">
-                <div className="heading-section heading-section-white pl-md-5">
-                  <span className="subheading">About us</span>
-                  <h2 className="mb-4">Welcome to Luxe Driver Rentals</h2>
-                  <p>Drive Your Dreams: Unleash Luxury on Every Journey with LuxeDriver Rentals</p>
-                  <p>At Luxe Driver Rentals, we understand that every journey is an opportunity to create lasting memories, and the vehicle you choose plays a pivotal role in shaping those moments. That's why we've curated a fleet of the most coveted luxury cars, ensuring that each drive with us is a statement of refined taste and opulence.
-
-Our commitment to excellence goes beyond the vehicles we offer. We have meticulously designed our rental process to be seamless, from the moment you browse our collection to the instant you step into your chosen vehicle. Our user-friendly online platform allows you to explore our fleet, select your dream car, and secure your reservation with ease.
-
-.</p>
-                  <p><a href="#" className="btn btn-primary py-3 px-4">Search Vehicle</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+       
 
 
       </>
