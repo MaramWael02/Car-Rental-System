@@ -305,7 +305,7 @@ const ReportsPage = (props) => {
                         <option value="">Select...</option>
                         <option value="reservationPeriod">Reservation in a Period</option>
                         <option value="reservationCarPeriod">Car Reservations in a Period</option>
-                        <option value="CarDay">Status of a Car in a Day</option>
+                        <option value="CarDay">Status of Cars in a Day</option>
                         <option value="reservationCustomer">Customer Reservations</option>
                         <option value="payments">Daily Payments in a Period</option>
                     </select>

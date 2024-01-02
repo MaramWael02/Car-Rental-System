@@ -148,7 +148,7 @@ app.post('/api/reserve-car', (req, res) => {
       const car = results[0];
       const price = car.price;
       console.log('price', price);
-      /*const reservation_date = new Date(2023,10,30);*/
+      //const reservation_date = new Date(2023,10,29);
       //console.log('reservation_date', reservation_date);
       // Insert the reservation into the database
       connection.query(
@@ -185,6 +185,14 @@ app.post('/api/reserve-car', (req, res) => {
             });
           }
           );
+          // insert new available status
+          connection.query('Insert into Car_Rental_System.Car_Status (plate_id, start_date, status) values (?,?,?)',
+          [plate_id, return_date_date, 'Available'], (err, results) => {
+            if (err) {
+              console.error('Error during updating car status:', err);
+              return res.status(500).json({ message: 'Server error' });
+            }
+          });
     }});
       }
     );
@@ -304,8 +312,8 @@ app.get('/api/car-status-reports', (req, res) => {
   const day_date = new Date(day);
   console.log('day_date', day_date);
   connection.query(
-      'select * from Car_Rental_System.Car_Status where ? between start_date AND end_date',
-      [day_date],
+      'select * from Car_Rental_System.Car_Status where ? between start_date AND end_date or (end_date is null and ? >= start_date)',
+      [day_date, day_date],
       (err, car_status_reports) => {
           if (err) {
               console.error('Error during login:', err);
