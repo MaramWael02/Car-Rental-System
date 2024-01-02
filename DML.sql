@@ -69,28 +69,4 @@ INSERT INTO admin (username, `password`) VALUES
     ('admin20', 'secureadminpass');
 
 
-INSERT INTO Car (plate_id,model, brand, 'year', price, office_id) VALUES
-    ('ABC123', 'Corolla', 'Toyota', 2024, 'Black', 500, 3),
-    ('DEF456', 1, 'Ford', 'Corolla', 2018, 'Black', 40, 'Available'),
-    ('GHI789', 1, 'Cheverolet', 'Civic', 2017, 'Red', 45, 'Available'),
-    ('JKL012', 1, 'BMW', 'Accord', 2016, 'Blue', 55, 'Available'),
-    ('MNO345', 1, 'BMW', 'Prius', 2015, 'Silver', 60, 'Available'),
-    ('PQR678', 1, 'BMW', 'RAV4', 2014, 'White', 65, 'Available'),
-    ('STU901', 1, 'Honda', 'CR-V', 2013, 'Black', 70, 'Available'),
-    ('VWX234', 1, 'Honda', 'Pilot', 2012, 'Red', 75, 'Available'),
-    ('YZA567', 1, 'Nissan', 'Highlander', 2011, 'Blue', 80, 'Available'),
-    ('BCD890', 1, 'Nissan', '4Runner', 2010, 'Silver', 85, 'Available'),
-    ('EFG123', 1, 'Kia', 'Odyssey', 2009, 'White', 90, 'Available'),
-    ('HIJ456', 1, 'Kia', 'Civic', 2008, 'Black', 95, 'Available'),
-    ('KLM789', 1, 'Jeep', 'Camry', 2007, 'Red', 100, 'Available'),
-    ('NOP012', 1, 'Mercedes Benz', 'Corolla', 2006, 'Blue', 105, 'Available'),
-    ('PQR345', 1, 'Audi', 'Civic', 2005, 'Silver', 110, 'Available'),
-    ('NOP012', 1, 'Mercedes Benz', 'Corolla', 2006, 'Blue', 105, 'Available'),
-    ('PQR345', 1, 'Audi', 'Civic', 2005, 'Silver', 110, 'Available'),
-    ('STU678', 1, 'Audi', 'Accord', 2004, 'White', 115, 'Available'),
-    ('VWX901', 1, 'Buggati', 'Camry', 2003, 'Black', 120, 'Available'),
-    ('YZA234', 1, 'Fiat', 'Corolla', 2002, 'Red', 125, 'Available'),
-    ('BCD567', 1, 'Fiat', 'Civic', 2001, 'Blue', 130, 'Available'),
-    ('EFG890', 1, 'Land Rover', 'Accord', 2000, 'Silver', 135, 'Available'),
-    ('HIJ123', 1, 'Volvo', 'RAV4', 1999, 'White', 140, 'Available'),
-    ('STU678', 1, 'Audi', 'Accord', 2004, 'White', 115, 'Available');
+/*Other tables are populated through the system*/
