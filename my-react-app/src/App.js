@@ -9,6 +9,7 @@ import { ADDCAR } from './components/AddCarPage/AddCarPage';
 import ReportsPage from './components/ReportPage/ReportPage';
 import CarPage from './components/CarPage/CarPage';
 import SearchPage from './components/SearchPage/Search';
+import CustomerSearch from './components/Customer_Search/CustomerSearch';
 function App() {
   const [currentForm, setCurrentForm] = useState('login'); // ['login', 'register'
   const[user, setUser] = useState('');
@@ -39,6 +40,8 @@ function App() {
         (<HomePage onFormSwitch={toggleform} username={user}/>)
         :currentForm === 'SearchPage' ?
         (<SearchPage onFormSwitch={toggleform}/>)
+        :currentForm === 'customer-search' ?
+        (<CustomerSearch onFormSwitch={toggleform} username={user}/>)
         : null
       
       }

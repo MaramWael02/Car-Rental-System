@@ -8490,8 +8490,8 @@ h1, h2, h3, h4, h5,
     border: transparent !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     height: 40px !important;
-    background: transparent !important;
-    color: rgba(255, 255, 255, 0.7) !important;
+    /*background: transparent !important;
+    /*color: rgba(255, 255, 255, 0.7) !important;*/
     font-size: 12px;
     border-radius: 0px;
     -webkit-box-shadow: none !important;
