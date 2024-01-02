@@ -7,7 +7,7 @@ const CarPage=(props) =>{
     return(
         <div>
             <Header onClick={props.onFormSwitch} username={props.username}/>
-            <CarList onClick={props.onFormSwitch}/>
+            <CarList onClick={props.onFormSwitch}username={props.username}/>
             <Footer />
         </div>
     );

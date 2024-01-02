@@ -147,13 +147,16 @@ app.post('/api/reserve-car', (req, res) => {
       
       const car = results[0];
       const price = car.price;
-      console.log('price', price);
-      //const reservation_date = new Date(2023,10,29);
-      //console.log('reservation_date', reservation_date);
+      const total_days = return_date_date.getDate() - pick_up_date_date.getDate();
+      const total_price = price * total_days
+      console.log('price', total_price);
+      //const reservation_date = new Date();
+      const reservation_date = new Date(2023,10,29);
+      console.log('reservation_date', reservation_date);
       // Insert the reservation into the database
       connection.query(
-        'INSERT INTO Car_Rental_System.Reservation (pick_up_date, return_date, plate_id, customer_id, office_id, price) VALUES (?, ?, ?, ?, ?, ?)', 
-        [pick_up_date_date, return_date_date, plate_id, customer_id, office_id_int, price],
+        'INSERT INTO Car_Rental_System.Reservation (pick_up_date, return_date, plate_id, customer_id, office_id, price, reservation_date) VALUES (?, ?, ?, ?, ?, ?,?)', 
+        [pick_up_date_date, return_date_date, plate_id, customer_id, office_id_int, total_price, reservation_date],
         (err, results) => {
           if (err) {
             console.error('Error during reservation:', err);
@@ -179,9 +182,10 @@ app.post('/api/reserve-car', (req, res) => {
             }
             console.log('Reservation successful');
             return res.status(200).json({
-              message: 'Car Reserved Successfully. Please head to office ' + office_id + ' on ' + pick_up_date + ' to receive your car.',
+              message: 'Car Reserved Successfully. Please head to office ' + office_id + ' on ' + pick_up_date + ' to receive your car. you should pay : ' + total_price,
               office: office_id,
-              pick_up_date: pick_up_date
+              pick_up_date: pick_up_date,
+              total_price: total_price
             });
           }
           );
@@ -193,9 +197,17 @@ app.post('/api/reserve-car', (req, res) => {
               return res.status(500).json({ message: 'Server error' });
             }
           });
+          connection.query('Insert into Car_Rental_System.payments(start_date,payment) values (?,?)',
+          [pick_up_date_date,total_price],(err,results) =>{
+            if(err)
+            {
+              console.error('Error')
+              return res.status(500).json({ message: 'Server error' });
+            }
+          })
     }});
       }
-    );
+    ); 
   });
 });
 
@@ -269,8 +281,9 @@ app.get('/api/reservation-reports', (req, res) => {
   // Get reservation reports during a certain time period
   const start_date_date = new Date(start_date);
   const end_date_date = new Date(end_date);
+  console.log(start_date_date, end_date_date)
   connection.query(
-      'select * from Car_Rental_System.Reservation Natural JOIN Car_Rental_System.customer Natural JOIN Car_Rental_System.Car where reservation_date >= ? and reservation_date <= ?',
+      'select * from Car_Rental_System.Reservation as r JOIN Car_Rental_System.Car as c on r.plate_id = c.plate_id  where reservation_date between ? and ?',
       [start_date_date, end_date_date],
       (err, reservation_reports) => {
           if (err) {
@@ -292,7 +305,7 @@ app.get('/api/car-reservations-report', (req, res) => {
   const start_date_date = new Date(start_date);
   const end_date_date = new Date(end_date);
   connection.query(
-      'select * from Car_Rental_System.Reservation Natural Join Car_Rental_System.Car where plate_id = ? and reservation_date >= ? and reservation_date <= ?',
+      'select * from Car_Rental_System.Reservation as r JOIN Car_Rental_System.Car as c on r.plate_id = c.plate_id where c.plate_id = ? and reservation_date >= ? and reservation_date <= ?',
       [plate_id, start_date_date, end_date_date],
       (err, car_reservations) => {
           if (err) {
@@ -353,7 +366,7 @@ app.get('/api/payment-reports', (req, res) => {
   console.log('end_date_date', end_date_date);
   // Get all payments made in a specific period
   connection.query(
-      'select sum(price) as total, reservation_date from Car_Rental_System.Reservation where reservation_date between ? AND ? group by reservation_date', /// Needs to be adjusted
+      'select sum(payment) as total, start_date from Car_Rental_System.payments where start_date between ? AND ? group by start_date', /// Needs to be adjusted
       [start_date_date, end_date_date],
       (err, payment_reports) => {
           if (err) {
@@ -448,10 +461,11 @@ app.get('/api/car-price', (req, res) => {
 app.get('/api/car-office', (req, res) => {
   const {office_id} = req.query;
   console.log('Received GET request at /api/search-car-office');
+  const office_id_int = parseInt(office_id);
   // Get all payments made on a certain day
   connection.query(
       'select * from Car_Rental_System.Car where office_id = ?',
-      [office_id],
+      [office_id_int],
       (err, car_office) => {
           if (err) {
               console.error('Error during login:', err);

@@ -2,7 +2,6 @@ import React from 'react';
 
 const Header=(props) => {
     const handleNavigation = (page) => {
-        
         props.onClick(page, props.username);
       };
 
@@ -19,6 +18,7 @@ const Header=(props) => {
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item active"><a href="#" className="nav-link" onClick={() => handleNavigation('HomePage')}>Home</a></li>
                                 <li className="nav-item"><a href="#" className="nav-link" onClick={() => handleNavigation('view-cars')}>Cars</a></li>
+                                <li className="nav-item"><a href="#" className="nav-link" onClick={() => handleNavigation('customer-search')}>Search</a></li>
                                 <li className="nav-item"><a href="#" className="nav-link" onClick={() => handleNavigation('login')}>Sign Out</a></li>
                             </ul>
                         </div>

@@ -6,8 +6,8 @@ const [office_id, setOfficeID] = useState('');
 const [pick_up_date, setPickUpdDate] = useState('');
 const [return_date, setReturnDate] = useState('');
 const [plate_id, setPlateID] = useState('');
+const [cars, setCars] = useState([]);
 const [error, setError] = useState('');
-
 const handleInput = async (e) =>{
     e.preventDefault();
     try {
@@ -34,8 +34,28 @@ const handleInput = async (e) =>{
             alert('backend server not connected');
         }
     };
+    const handleCarOffice = async (e) => {
+        setOfficeID(e.target.value);
+        alert('In handleCarOffice' + e.target.value)
+        try {
+            const url = `http://localhost:8000/api/car-office?office_id=${e.target.value}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    },
+                });
 
-
+            if (response.ok) {
+                const data = await response.json();
+                setCars(data); 
+                console.log('handlePayments successful:', data);
+            }
+        } catch (error) {
+            console.error('Error during handlePayments:', error);
+            setError('Server error');
+        }
+    };
 
     return (
         <div className="App">
@@ -64,36 +84,44 @@ const handleInput = async (e) =>{
                                             <div className="col-md-4 d-flex align-items-center">
                                                 <form action="#" className="request-form ftco-animate bg-primary">
                                                     <h2>Make your trip</h2>
-                                                    {/*<div className="form-group">
-                                                        <label htmlFor className="label">Username</label>
-                                                        <input 
-                                                        type="text" 
-                                                        className="form-control" 
-                                                        placeholder="Enter your username" 
-                                                        value={customer_id}
-                                                        onChange={(e) => setUsername(e.target.value)}
-                                                        required
-                                                        />
-    </div>*/}
+                        
                                                     <div className="form-group">
                                                         <label htmlFor className="label">Pick-up location</label>
-                                                        <input type="text" 
-                                                        className="form-control" 
-                                                        placeholder="Office ID" 
-                                                        value={office_id}
-                                                        onChange={(e) => setOfficeID(e.target.value)}
-                                                        required
-                                                        />
+                                                        <select
+                                                            type="text"
+                                                            className="form-control"
+                                                            placeholder="Office ID"
+                                                            value={office_id}
+                                                            onChange={(e) => handleCarOffice(e)}
+                                                            required
+                                                            style={{ color: 'black' }}
+                                                        >
+                                                            <option value="">Select an office</option>
+                                                            <option value="1">office 1</option>
+                                                            <option value="2">office 2</option>
+                                                            <option value="3">office 3</option>
+                                                            <option value="4">office 4</option>
+                                                            <option value="5">office 5</option>
+                                                            <option value="6">office 6</option>
+                                                        </select>
+                                                        
                                                     </div>
                                                     <div className="form-group">
                                                         <label htmlFor className="label">Car</label>
-                                                        <input type="text" 
+                                                        <select type="text" 
                                                         className="form-control" 
                                                         placeholder="Car's plate ID" 
                                                         value={plate_id}
                                                         onChange={(e) => setPlateID(e.target.value)}
                                                         required
-                                                        />
+                                                        >
+                                                            <option value="">Select a car</option>
+                                                            {cars.map((car, index) => (
+                                                                <option key={index} value={car.plate_id}>{car.brand} {car.model} {car.plate_id}</option>
+                                                            
+                                                            ))}
+                                                        </select>
+                                        
                                                     </div>
                             
                                                     <div className="d-flex">

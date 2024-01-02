@@ -153,7 +153,7 @@ const ReportsPage = (props) => {
             <tbody>
               {data.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.reservation_date}</td>
+                  <td>{item.start_date}</td>
                  { <td>{item.total}</td>}
                 </tr>
               ))}
